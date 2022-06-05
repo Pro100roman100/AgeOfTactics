@@ -15,7 +15,11 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< Updated upstream
 //For testing, use left ctrl to kill all units
+=======
+        //For testing, use left ctrl to kill all units
+>>>>>>> Stashed changes
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.LeftControl))
             Kill();
@@ -36,4 +40,8 @@ public class Health : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
