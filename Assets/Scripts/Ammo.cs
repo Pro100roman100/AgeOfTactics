@@ -10,4 +10,11 @@ public class Ammo : MonoBehaviour
     {
         transform.Translate(Vector3.right * Ammo_speed);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Base"))
+            collision.GetComponent<Health>().TakeDamage(150);
+        Destroy(this.gameObject);
+    }
 }

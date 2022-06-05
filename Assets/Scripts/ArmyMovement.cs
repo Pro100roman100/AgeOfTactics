@@ -25,10 +25,7 @@ public class ArmyMovement : MonoBehaviour
         
         if (_Distance <= 10 && i == 0)
         {
-<<<<<<< Updated upstream
-=======
             i++;
->>>>>>> Stashed changes
             Instantiate(Ammo, transform.position, Quaternion.identity);
         }
         
