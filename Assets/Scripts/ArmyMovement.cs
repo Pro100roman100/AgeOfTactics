@@ -11,7 +11,9 @@ public class ArmyMovement : MonoBehaviour
 
     // Скорость, дистанция
     private float Army_speed = 2;
+    int i = 0;
     float _Distance;
+    
 
 
 
@@ -20,11 +22,16 @@ public class ArmyMovement : MonoBehaviour
     {
        
         _Distance = Vector3.Distance(ShotRange.transform.position, transform.position);
-
-        if (_Distance <= 10)
+        
+        if (_Distance <= 10 && i == 0)
         {
+<<<<<<< Updated upstream
+=======
+            i++;
+>>>>>>> Stashed changes
             Instantiate(Ammo, transform.position, Quaternion.identity);
         }
+        
         else if (_Distance > 10)
         {
             transform.Translate(Army_speed * Time.deltaTime, 0, 0);
