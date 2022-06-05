@@ -21,7 +21,7 @@ public class ArmyMovement : MonoBehaviour
        
         _Distance = Vector3.Distance(ShotRange.transform.position, transform.position);
 
-        if (_Distance == 10)
+        if (_Distance <= 10)
         {
             Instantiate(Ammo, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
