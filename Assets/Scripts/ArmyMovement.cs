@@ -23,7 +23,7 @@ public class ArmyMovement : MonoBehaviour
 
         if (_Distance <= 10)
         {
-            Instantiate(Ammo, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            Instantiate(Ammo, transform.position, Quaternion.identity);
         }
         else if (_Distance > 10)
         {
