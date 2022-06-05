@@ -13,10 +13,6 @@ public class ArmyMovement : MonoBehaviour
     private float Army_speed = 2;
     int i = 0;
     float _Distance;
-    
-
-
-
 
     void FixedUpdate()
     {
@@ -26,7 +22,7 @@ public class ArmyMovement : MonoBehaviour
         if (_Distance <= 10 && i == 0)
         {
             i++;
-            Instantiate(Ammo, transform.position, Quaternion.identity);
+            Instantiate(Ammo, transform.position, Quaternion.identity).GetComponent<Ammo>().ShotRange = ShotRange;
         }
         
         else if (_Distance > 10)

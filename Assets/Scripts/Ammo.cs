@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    private float Ammo_speed = 0.01f;
-       
+    [SerializeField] private float Ammo_speed = 1f;
+    [HideInInspector] public Transform ShotRange;
+
     void Update()
     {
-        transform.Translate(Vector3.right * Ammo_speed);
+        transform.Translate(-(transform.position - ShotRange.position).normalized * Ammo_speed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
