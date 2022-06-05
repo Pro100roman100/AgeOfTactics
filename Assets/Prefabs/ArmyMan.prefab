@@ -264,14 +264,9 @@ GameObject:
   - component: {fileID: 3776251247567333393}
   - component: {fileID: -4019531400738454114}
   - component: {fileID: -7970598594558474861}
-<<<<<<< Updated upstream
   - component: {fileID: -1182259546057238139}
   - component: {fileID: 7438834442896161357}
   m_Layer: 7
-=======
-  - component: {fileID: 8653164885987409790}
-  m_Layer: 6
->>>>>>> Stashed changes
   m_Name: ArmyMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_2_Base: {fileID: 0}
-<<<<<<< Updated upstream
 --- !u!114 &7438834442896161357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,5 +416,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeath: 100
-=======
->>>>>>> Stashed changes
