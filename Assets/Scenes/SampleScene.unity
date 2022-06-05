@@ -256,58 +256,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!1 &186780262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6196480559580496825, guid: ec9b9da87c17dce4e859bb5116f3f132, type: 3}
-  m_PrefabInstance: {fileID: 1599742466263421970}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &186780264
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 186780262}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &186780267
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 186780262}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.00037640333, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.1845165, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &212276390
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,34 +309,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7970598594558474861, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4019531400738454114, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1182259546057238139, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: Goal
-      value: 
-      objectReference: {fileID: 48743153}
-    - target: {fileID: -1182259546057238139, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: Player_2_Base
-      value: 
-      objectReference: {fileID: 48743153}
-    - target: {fileID: 31636042735173362, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2469284112314011669, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358844908095735521, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7025069933217077091, guid: c454c307b84112b4380ded26e620397f, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -436,14 +356,6 @@ PrefabInstance:
     - target: {fileID: 7418037198588982433, guid: c454c307b84112b4380ded26e620397f, type: 3}
       propertyPath: m_Name
       value: ArmyMan
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418037198588982433, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7418037198588982433, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -678,10 +590,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2822386021677916539, guid: ec9b9da87c17dce4e859bb5116f3f132, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 76.28292
-      objectReference: {fileID: 0}
-    - target: {fileID: 2822386021677916539, guid: ec9b9da87c17dce4e859bb5116f3f132, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -724,10 +632,6 @@ PrefabInstance:
     - target: {fileID: 6196480559580496825, guid: ec9b9da87c17dce4e859bb5116f3f132, type: 3}
       propertyPath: m_Name
       value: ground
-      objectReference: {fileID: 0}
-    - target: {fileID: 6196480559580496825, guid: ec9b9da87c17dce4e859bb5116f3f132, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
