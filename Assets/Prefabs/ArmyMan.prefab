@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: -4019531400738454114}
   - component: {fileID: -7970598594558474861}
   - component: {fileID: 7438834442896161357}
-  - component: {fileID: 8653164885987409790}
+  - component: {fileID: 1283091173936016074}
   m_Layer: 6
   m_Name: ArmyMan
   m_TagString: Untagged
@@ -289,7 +289,7 @@ Transform:
   - {fileID: 6171970094035885951}
   - {fileID: 7318782557970769011}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3776251247567333393
 SpriteRenderer:
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHeath: 100
---- !u!114 &8653164885987409790
+--- !u!114 &1283091173936016074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,3 +416,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player_2_Base: {fileID: 0}
+  ShotRange: {fileID: 1723279517031584156, guid: 4d504dcfb45b2d742b5526cf86bad9cd, type: 3}
+  Ammo: {fileID: 3409685641933904201, guid: 65ff452e5bc21044cb27995b767a3210, type: 3}
