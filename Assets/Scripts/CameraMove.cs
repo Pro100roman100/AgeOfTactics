@@ -35,9 +35,9 @@ public class CameraMove : MonoBehaviour
                 _cam.transform.Translate(Vector2.left * (_cam.transform.position.x + allowedZone.x));
             else if (_cam.transform.position.x > allowedZone.x && _cam.transform.position.x > 0)
                 _cam.transform.Translate(Vector2.right * (-_cam.transform.position.x + allowedZone.x));
-            if (_cam.transform.position.y > allowedZone.x && _cam.transform.position.y > 0)
+            if (_cam.transform.position.y > allowedZone.y && _cam.transform.position.y > 0)
                 _cam.transform.Translate(Vector2.up * (-_cam.transform.position.y + allowedZone.y));
-            else if (-_cam.transform.position.y > allowedZone.x && _cam.transform.position.y < 0)
+            else if (-_cam.transform.position.y > allowedZone.y && _cam.transform.position.y < 0)
                 _cam.transform.Translate(Vector2.down * (_cam.transform.position.y + allowedZone.y));
         }
 
