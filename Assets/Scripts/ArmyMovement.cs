@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class ArmyMovement : MonoBehaviour
 {
-    
-    [SerializeField] Transform  Player_2_Base;
+
+    [SerializeField] Transform Player_2_Base;
+    public Transform ShotRange;
+    public GameObject Ammo;
+
     // Скорость, дистанция
     private float Army_speed = 2;
-   
+    float _Distance;
+
+
 
 
     void FixedUpdate()
     {
-        transform.Translate(Army_speed * Time.deltaTime,0,0);
+       
+        _Distance = Vector3.Distance(ShotRange.transform.position, transform.position);
 
+        if (_Distance == 10)
+        {
+            Instantiate(Ammo, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        }
+        else if (_Distance > 10)
+        {
+            transform.Translate(Army_speed * Time.deltaTime, 0, 0);
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
