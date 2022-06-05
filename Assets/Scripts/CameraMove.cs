@@ -8,8 +8,8 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private float _moveSpeed = 1f;
     //speed of camera zooming
     [SerializeField] private float _zoomSpeed = 10;
-    [SerializeField] private float _minZoom = 1;
-    [SerializeField] private float _maxZoom = 15;
+    [SerializeField] private float _minZoom = 5.598283f;
+    [SerializeField] private float _maxZoom = 17.91455f;
 
     private Camera _cam;
 

@@ -6,21 +6,21 @@ public class ArmyMovement : MonoBehaviour
 {
     
     [SerializeField] Transform  Player_2_Base;
-   
+    // Скорость, дистанция
     private float Army_speed = 2;
    
 
 
     void FixedUpdate()
     {
-        transform.position += Vector3.right * Army_speed * Time.deltaTime;
+        transform.Translate(Army_speed * Time.deltaTime,0,0);
 
     }
-    void OnCollisionEnter(Collision otherObj)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (otherObj.gameObject.tag == "Base")
+        if (collision.gameObject.tag == "Base")
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
