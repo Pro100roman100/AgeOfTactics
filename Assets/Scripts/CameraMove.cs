@@ -5,13 +5,17 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     //speed of camera movement
+    [Header("Movement")]
     [SerializeField] private float _moveSpeed = 1f;
     //speed of camera zooming
+    [Header("Zoom")]
     [SerializeField] private float _zoomSpeed = 10;
     [SerializeField] private float _minZoom = 5.598283f;
     [SerializeField] private float _maxZoom = 17.91455f;
     //zone for camera
+    [Header("Zone")]
     [SerializeField] private Vector2 allowedZone = new(10f, 10f);
+    [SerializeField] private Vector2 offset = Vector2.zero;
 
     private Camera _cam;
 
@@ -31,14 +35,17 @@ public class CameraMove : MonoBehaviour
                 ));
             
             //check if cam is out of zone
-            if(-_cam.transform.position.x > allowedZone.x && _cam.transform.position.x < 0)
-                _cam.transform.Translate(Vector2.left * (_cam.transform.position.x + allowedZone.x));
-            else if (_cam.transform.position.x > allowedZone.x && _cam.transform.position.x > 0)
-                _cam.transform.Translate(Vector2.right * (-_cam.transform.position.x + allowedZone.x));
-            if (_cam.transform.position.y > allowedZone.y && _cam.transform.position.y > 0)
-                _cam.transform.Translate(Vector2.up * (-_cam.transform.position.y + allowedZone.y));
-            else if (-_cam.transform.position.y > allowedZone.y && _cam.transform.position.y < 0)
-                _cam.transform.Translate(Vector2.down * (_cam.transform.position.y + allowedZone.y));
+            if(-_cam.transform.position.x > allowedZone.x - offset.x && _cam.transform.position.x - offset.x < 0)
+                _cam.transform.Translate(Vector2.left * (_cam.transform.position.x + allowedZone.x - offset.x));
+
+            else if (_cam.transform.position.x > allowedZone.x + offset.x && _cam.transform.position.x - offset.x > 0)
+                _cam.transform.Translate(Vector2.right * (-_cam.transform.position.x + allowedZone.x + offset.x));
+
+            if (_cam.transform.position.y > allowedZone.y + offset.y && _cam.transform.position.y - offset.y > 0)
+                _cam.transform.Translate(Vector2.up * (-_cam.transform.position.y + allowedZone.y + offset.y));
+
+            else if (-_cam.transform.position.y > allowedZone.y - offset.y && _cam.transform.position.y - offset.y < 0)
+                _cam.transform.Translate(Vector2.down * (_cam.transform.position.y + allowedZone.y - offset.y));
         }
 
         //zoom camera
@@ -54,6 +61,6 @@ public class CameraMove : MonoBehaviour
     {
         //draw zone in scene view
         Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(Vector2.zero, allowedZone * 2);
+        Gizmos.DrawWireCube(offset, allowedZone * 2);
     }
 }

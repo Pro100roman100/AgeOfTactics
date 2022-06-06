@@ -308,8 +308,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 63.4341, y: 52.9028}
-  m_SizeDelta: {x: 126.8683, y: 105.8056}
+  m_AnchoredPosition: {x: 101.54, y: 82.73}
+  m_SizeDelta: {x: 203.08, y: 165.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106078519
 MonoBehaviour:
@@ -362,7 +362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 2000046513265977934, guid: d0adda0dabef3ef4c849f2c82d242b41, type: 3}
-  buildingObject: {fileID: 0}
 --- !u!61 &106078522
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -611,7 +610,8 @@ MonoBehaviour:
   _zoomSpeed: 10
   _minZoom: 5.598283
   _maxZoom: 17.91455
-  allowedZone: {x: 30.63, y: 11.3}
+  allowedZone: {x: 30.63, y: 3.41}
+  offset: {x: 0, y: 7.7}
 --- !u!1 &593575949
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 57.1
+  m_fontSize: 91.4
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -893,12 +893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -914,7 +914,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
