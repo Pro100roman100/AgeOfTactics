@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHeath = 100;
-
-    private float heath;
+    [SerializeField] private float maxHealth = 100;
+    public float health;
+    
 
     private void Awake()
     {
-        heath = maxHeath;
+        health = maxHealth;       
     }
 
     private void Update()
@@ -20,20 +22,19 @@ public class Health : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl))
             Kill();
 #endif
-
     }
 
 
     public void TakeDamage(float damage)
     {
-        heath -= damage;
-
-        if (heath <= 0)
-            Kill();
+        health -= damage;      
+        if (health <= 0)
+            Kill();    
     }
 
     public void Kill()
     {
         Destroy(this.gameObject);
     }
+   
 }
