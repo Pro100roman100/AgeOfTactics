@@ -6,7 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100;
-    public float health;
+    [HideInInspector] public float health { get; private set; }
     
 
     private void Awake()
