@@ -10,7 +10,7 @@ public class ArmyMovement : MonoBehaviour
     public GameObject Ammo;
 
     // Скорость, дистанция
-    private float Army_speed = 2;
+    [SerializeField] private float Army_speed = 2;
     int i = 0;
     float _Distance;
 

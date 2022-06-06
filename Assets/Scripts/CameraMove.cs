@@ -24,16 +24,14 @@ public class CameraMove : MonoBehaviour
         _cam = GetComponent<Camera>();
     }
 
+    private Vector3 _previousCoordinates = Vector3.zero;
     private void Update()
     {
         //move camera
         if (Input.GetMouseButton(2))
         {
-            _cam.transform.Translate(new Vector3(
-                -Input.GetAxis("Mouse X") * _moveSpeed * _cam.orthographicSize * .2f,
-                -Input.GetAxis("Mouse Y") * _moveSpeed * _cam.orthographicSize * .2f
-                ));
-            
+            _cam.transform.Translate(_previousCoordinates - Camera.main.ScreenToWorldPoint(Input.mousePosition) * _moveSpeed);
+
             //check if cam is out of zone
             if(-_cam.transform.position.x > allowedZone.x - offset.x && _cam.transform.position.x - offset.x < 0)
                 _cam.transform.Translate(Vector2.left * (_cam.transform.position.x + allowedZone.x - offset.x));
@@ -47,6 +45,7 @@ public class CameraMove : MonoBehaviour
             else if (-_cam.transform.position.y > allowedZone.y - offset.y && _cam.transform.position.y - offset.y < 0)
                 _cam.transform.Translate(Vector2.down * (_cam.transform.position.y + allowedZone.y - offset.y));
         }
+        _previousCoordinates = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //zoom camera
         _cam.orthographicSize -= (float)Input.GetAxis("Mouse ScrollWheel") * _zoomSpeed;

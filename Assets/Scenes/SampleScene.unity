@@ -442,13 +442,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1283091173936016074, guid: c454c307b84112b4380ded26e620397f, type: 3}
-      propertyPath: Ammo
-      value: 
-      objectReference: {fileID: 3409685641933904201, guid: 65ff452e5bc21044cb27995b767a3210, type: 3}
-    - target: {fileID: 1283091173936016074, guid: c454c307b84112b4380ded26e620397f, type: 3}
       propertyPath: ShotRange
       value: 
       objectReference: {fileID: 361693696}
+    - target: {fileID: 1283091173936016074, guid: c454c307b84112b4380ded26e620397f, type: 3}
+      propertyPath: Army_speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1283091173936016074, guid: c454c307b84112b4380ded26e620397f, type: 3}
       propertyPath: Player_2_Base
       value: 
