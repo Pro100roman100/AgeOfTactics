@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    [SerializeField] private float Ammo_speed = 1f;
+    [SerializeField] private float Ammo_speed = 0.1f;
     [HideInInspector] public Transform ShotRange;
 
     void Update()
