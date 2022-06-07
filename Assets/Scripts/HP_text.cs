@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HP_text : MonoBehaviour
 {
+    [SerializeField] private Health enemyBaseHealth;
+    [SerializeField] private Image healthBar;
 
-    void Start()
+    private float oldHealth;
+
+    private void Start()
     {
-     
+        oldHealth = enemyBaseHealth.health;
     }
-void FixedUpdate()
+    private void Update()
     {
-        
-      
+        if (oldHealth == enemyBaseHealth.health)
+            return;
+        oldHealth = enemyBaseHealth.health;
+        healthBar.fillAmount = enemyBaseHealth.health / enemyBaseHealth.maxHealth;
     }
 }

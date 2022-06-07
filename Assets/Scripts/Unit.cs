@@ -11,9 +11,10 @@ abstract public class Unit : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
 
-    [HideInInspector] private float speed = 1f;
+    [SerializeField] private float speed = 1f;
+
     [HideInInspector] public Transform nearestTarget;
-    public bool isReloaded = true;
+    [HideInInspector] public bool isReloaded = true;
 
     public void Shoot()
     {
