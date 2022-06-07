@@ -493,7 +493,7 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1283091173936016074, guid: c454c307b84112b4380ded26e620397f, type: 3}
+    - target: {fileID: 0}
       propertyPath: Player_2_Base
       value: 
       objectReference: {fileID: 48743153}

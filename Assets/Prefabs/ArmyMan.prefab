@@ -347,8 +347,8 @@ GameObject:
   - component: {fileID: 7025069933217077091}
   - component: {fileID: -4019531400738454114}
   - component: {fileID: 7438834442896161357}
-  - component: {fileID: 1283091173936016074}
   - component: {fileID: 3406971638499866891}
+  - component: {fileID: 7343723771438165449}
   m_Layer: 6
   m_Name: ArmyMan
   m_TagString: Untagged
@@ -409,22 +409,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
---- !u!114 &1283091173936016074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7418037198588982433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64d3c82824345094688385721994e1bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player_2_Base: {fileID: 0}
-  ShotRange: {fileID: 1723279517031584156, guid: 4d504dcfb45b2d742b5526cf86bad9cd, type: 3}
-  Ammo: {fileID: 3409685641933904201, guid: 65ff452e5bc21044cb27995b767a3210, type: 3}
-  Army_speed: 1
 --- !u!70 &3406971638499866891
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -441,3 +425,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
+--- !u!114 &7343723771438165449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418037198588982433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2e7d25f94ac65499102eecb4ad122e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 5
+  reloadSpeed: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  speed: 1

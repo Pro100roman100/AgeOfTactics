@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Block : MonoBehaviour
 {
+    [HideInInspector] public SpriteRenderer renderComponent;
+
+    private void Awake()
+    {
+        renderComponent = GetComponent<SpriteRenderer>();
+    }
+
     public void StartBreak()
     {
         Debug.Log("destroying");
