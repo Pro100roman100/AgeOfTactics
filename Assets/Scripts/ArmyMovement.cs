@@ -19,13 +19,13 @@ public class ArmyMovement : MonoBehaviour
        
         _Distance = Vector3.Distance(ShotRange.transform.position, transform.position);
         
-        if (_Distance <= 10 && i == 0)
+        if (_Distance <= 2 && i == 0)
         {
             i++;
             Instantiate(Ammo, transform.position, Quaternion.identity).GetComponent<Ammo>().ShotRange = ShotRange;
         }
         
-        else if (_Distance > 10)
+        else if (_Distance > 2)
         {
             transform.Translate(Army_speed * Time.deltaTime, 0, 0);
         }
