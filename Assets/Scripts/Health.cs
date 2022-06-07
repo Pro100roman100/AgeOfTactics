@@ -26,9 +26,9 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;      
+        health -= damage;
         if (health <= 0)
-            Kill();    
+            Kill();
     }
 
     public void Kill()
