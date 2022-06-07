@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class TestUnit : Unit
 {
+    
     private void FixedUpdate()
     {
-        Move();
+        if (nearestTarget == null)
+            Move();
+        else
+            Shoot();
     }
 }
