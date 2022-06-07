@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {
@@ -9,11 +11,15 @@ public class BuildManager : MonoBehaviour
     public static bool isBuilding;
     public static Vector3 mousePosition;
 
+    [Header("Grid")]
     [SerializeField] private Vector2 gridOffset;
     [SerializeField] private float sellSize = 1f;
     [SerializeField] private Vector2Int buildingArea = new(5, 10);
+    [Header("Prefabs")]
     [SerializeField] private GameObject[] prefabs;
+    [Header("Masks")]
     [SerializeField] private LayerMask mask;
+    [SerializeField] private LayerMask UIMask;
 
     private GameObject buildingObject = null;
     private RaycastHit2D hit;
@@ -64,8 +70,27 @@ public class BuildManager : MonoBehaviour
     {
         buildingObject.transform.position = FitToGrid(mousePosition);
     }
+
+    [Header("GUI")]
+    [SerializeField] private GraphicRaycaster raycaster;
+    [SerializeField] private EventSystem eventSystem;
+    private PointerEventData pointerEventData;
+
     private void EndBuilding()
     {
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Input.mousePosition;
+
+        raycaster.Raycast(pointerEventData, results);
+
+        foreach(RaycastResult result in results)
+        {
+            if (result.gameObject.TryGetComponent<BuildButton>(out BuildButton button))
+                Destroy(buildingObject);
+        }
+
         buildingObject = null;
         isBuilding = false;
     }

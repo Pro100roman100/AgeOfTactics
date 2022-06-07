@@ -160,6 +160,11 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
+  UIMask:
+    serializedVersion: 2
+    m_Bits: 32
+  raycaster: {fileID: 1807888971}
+  eventSystem: {fileID: 1952794119}
 --- !u!4 &13247029
 Transform:
   m_ObjectHideFlags: 0
@@ -335,9 +340,10 @@ GameObject:
   - component: {fileID: 106078519}
   - component: {fileID: 106078522}
   - component: {fileID: 106078523}
+  - component: {fileID: 106078524}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -360,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 101.54, y: 82.73}
+  m_AnchoredPosition: {x: 101.53998, y: 82.73001}
   m_SizeDelta: {x: 203.08, y: 165.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106078519
@@ -440,6 +446,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabIndex: 0
+--- !u!50 &106078524
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106078516}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &212276390
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 1
-  _zoomSpeed: 1
+  _zoomSpeed: 2
   _minZoom: 1
   _maxZoom: 5
   allowedZone: {x: 5, y: 0.5}
@@ -1124,17 +1151,17 @@ Canvas:
   m_GameObject: {fileID: 1807888970}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1060342321
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1807888974
@@ -1262,8 +1289,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -16.3645, y: -19.241}
+  m_AnchoredPosition: {x: 0, y: -0.000022888184}
+  m_SizeDelta: {x: -16.3645, y: -13.7741}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2035616057
 MonoBehaviour:

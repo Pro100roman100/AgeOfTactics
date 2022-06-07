@@ -13,18 +13,16 @@ public class Block : MonoBehaviour
 
     public void StartBreak()
     {
-        Debug.Log("destroying");
         StartCoroutine(Break());
     }
     public void StopBreak()
     {
-        Debug.Log("stop destroying");
         StopAllCoroutines();
     }
 
     IEnumerator Break()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
 
         Destroy(this.gameObject);
     }

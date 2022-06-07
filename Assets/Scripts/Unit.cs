@@ -18,11 +18,8 @@ abstract public class Unit : MonoBehaviour
 
     public void Shoot()
     {
-        Debug.Log("shoot1");
         if (!isReloaded || nearestTarget == null)
             return;
-
-        Debug.Log("shoot2");
 
         GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
 
