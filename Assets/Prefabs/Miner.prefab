@@ -152,5 +152,7 @@ MonoBehaviour:
   buildedColor: {r: 0.34509805, g: 1, b: 0.23921569, a: 1}
   unbuildedColor: {r: 0.34610796, g: 1, b: 0.2396226, a: 0.5019608}
   cantBuildColor: {r: 1, g: 0.56037736, b: 0.56037736, a: 0.5019608}
+  placeOnGround: 1
   renderComponent: {fileID: 0}
+  builded: 0
   matterAdd: 10

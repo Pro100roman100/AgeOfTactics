@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-    public Vector2 size = Vector2.one;
+    public Vector2Int size = Vector2Int.one;
     public Vector2 offset = Vector2.zero;
     public int cost = 100;
     //private Rigidbody2D rb;
@@ -12,6 +12,7 @@ public abstract class Building : MonoBehaviour
     public Color buildedColor = Color.white;
     public Color unbuildedColor;
     public Color cantBuildColor;
+    public bool placeOnGround = false;
 
     [HideInInspector] public SpriteRenderer renderComponent;
     [HideInInspector] public bool builded = false;
@@ -47,5 +48,18 @@ public abstract class Building : MonoBehaviour
 
         OnUnbuild();
         Destroy(this.gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Vector3 localOffset = Vector3.zero;
+        if (size.x % 2 == 0)
+            localOffset.x += .5f;
+        if (size.y % 2 == 0)
+            localOffset.y += .5f;
+
+        Vector3 position = new(transform.position.x + offset.x + localOffset.x, transform.position.y + offset.y + localOffset.y);
+        Gizmos.DrawWireCube(position, BuildManager.DrawGridSection(new(size.x, size.y)));
     }
 }

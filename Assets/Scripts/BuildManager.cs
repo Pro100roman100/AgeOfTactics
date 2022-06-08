@@ -16,16 +16,16 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager builder = null;
     public static Building[,] building;
+    private SellType[,] grid;
     public static bool isBuilding;
     public static Vector3 mousePosition;
 
     [Header("Grid")]
     [SerializeField] private Vector2 gridOffset;
-    [SerializeField] private float sellSize = 1f;
+    private readonly float sellSize = 1f;
     [SerializeField] private Vector2Int buildingArea = new(5, 10);
     [Header("Prefabs")]
     public Building[] prefabs;
-    private SellType[,] grid;
     [Header("Masks")]
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask UIMask;
@@ -37,9 +37,19 @@ public class BuildManager : MonoBehaviour
 
     private void Awake()
     {
-        if (builder == null)
-            builder = this;
+        RecalculateBuilder();
         building = new Building[buildingArea.x, buildingArea.y];
+        grid = new SellType[buildingArea.x - 1, buildingArea.y - 1];
+
+        for (int i = 0; i < buildingArea.x; i++)
+        {
+            grid[i, 0] = SellType.GroundEmpty;
+        }
+    }
+    public static void RecalculateBuilder()
+    {
+        if (builder == null)
+            builder = FindObjectOfType<BuildManager>();
     }
     private void Update()
     {
@@ -59,14 +69,31 @@ public class BuildManager : MonoBehaviour
     }
     public static Vector3 FitToGrid(Vector3 original)
     {
+        RecalculateBuilder();
         Vector3 output;
 
         output = new(
-            Mathf.Floor(original.x / builder.sellSize) * builder.sellSize + builder.gridOffset.x,
-            Mathf.Floor(original.y / builder.sellSize) * builder.sellSize + builder.gridOffset.y,
-            0);
+            Mathf.Floor(original.x / builder.sellSize) * builder.sellSize + builder.gridOffset.x, 
+            Mathf.Floor(original.y / builder.sellSize) * builder.sellSize + builder.gridOffset.y
+            );
 
         return output;
+    }
+    public static Vector3 DrawGridSection(Vector3Int size)
+    {
+        Vector3 result;
+
+        Vector3 leftTopPoint = new(0.5f + size.x / 2, -0.5f - size.y / 2);
+        Vector3 rightBottomPoint = new(-0.5f - size.x / 2, 0.5f + size.y / 2);
+
+        if (size.x % 2 == 0)
+            leftTopPoint.x -= 1;
+        if (size.y % 2 == 0)
+            rightBottomPoint.y -= 1;
+
+        result = new(leftTopPoint.x - rightBottomPoint.x, leftTopPoint.y - rightBottomPoint.y);
+
+        return result;
     }
     public static void StartBuilding(int prefabIndex)
     {
@@ -155,5 +182,16 @@ public class BuildManager : MonoBehaviour
 
             return true;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+
+        Vector3 pos = Vector3.up * buildingArea.y/2 + (Vector3)gridOffset;
+        if (buildingArea.x % 2 == 0)
+            pos.x += .5f;
+
+        Gizmos.DrawWireCube(pos, DrawGridSection((Vector3Int)buildingArea));
     }
 }
