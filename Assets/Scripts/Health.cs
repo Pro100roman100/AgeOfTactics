@@ -8,7 +8,6 @@ public class Health : MonoBehaviour
     public float maxHealth = 100;
     [HideInInspector] public float health { get; private set; }
     
-
     private void Awake()
     {
         health = maxHealth;       
@@ -23,6 +22,11 @@ public class Health : MonoBehaviour
 #endif
     }
 
+    public void Heal(float heal)
+    {
+        if (health + heal >= maxHealth)
+            health = maxHealth;
+    }
 
     public void TakeDamage(float damage)
     {

@@ -4,17 +4,21 @@ using UnityEngine;
 
 abstract public class Unit : MonoBehaviour
 {
+    [Header("Shooting")]
     [SerializeField] private float range = 5f;
     [SerializeField] private float reloadSpeed = 1f;
     [SerializeField] private LayerMask mask;
+    [Header("Bullet")]
     [SerializeField] private Transform bulletOrigin;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
-
+    [SerializeField] private float streng;
+    [Header("Moving")]
     [SerializeField] private float speed = 1f;
 
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool isReloaded = true;
+    private Health health;
 
     public void Shoot()
     {
@@ -38,12 +42,16 @@ abstract public class Unit : MonoBehaviour
     {
         transform.Translate(speed * Time.deltaTime * Vector2.right);
     }
-
-    private void Start()
+    public void OnCreate()
     {
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
-    }
+        health = GetComponent<Health>();
+        streng += UpdatesManager.addStreng;
 
+        health.maxHealth += UpdatesManager.addHealth;
+        health.Heal(UpdatesManager.addHealth);
+    }
+    public void OnDestroy() { return; }
     private void RefreshTargets()
     {
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, range, mask);
@@ -62,13 +70,11 @@ abstract public class Unit : MonoBehaviour
                 nearestTarget = target.transform;
         }
     }
-
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadSpeed);
         isReloaded = true;
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

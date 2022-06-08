@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Creater : MonoBehaviour
 {
-    public GameObject _GO;
+    public GameObject prefab;
 
     void Update()
     {
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-            Instantiate(_GO, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            GameObject unit = Instantiate(prefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            unit.GetComponent<Unit>().OnCreate();
         }
     }
 }

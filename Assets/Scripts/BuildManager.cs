@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager builder = null;
-    public static Block[,] blocks;
+    public static Building[,] building;
     public static bool isBuilding;
     public static Vector3 mousePosition;
 
@@ -21,7 +21,7 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask UIMask;
 
-    private GameObject buildingObject = null;
+    private Building buildingObject = null;
     private RaycastHit2D hit;
     private RaycastHit2D oldHit;
 
@@ -29,7 +29,7 @@ public class BuildManager : MonoBehaviour
     {
         if (builder == null)
             builder = this;
-        blocks = new Block[buildingArea.x, buildingArea.y];
+        building = new Building[buildingArea.x, buildingArea.y];
     }
 
     private void Update()
@@ -63,7 +63,7 @@ public class BuildManager : MonoBehaviour
 
     public static void StartBuilding(int prefabIndex)
     {
-        builder.buildingObject = Instantiate(builder.prefabs[prefabIndex], FitToGrid(mousePosition), Quaternion.identity);
+        builder.buildingObject = Instantiate(builder.prefabs[prefabIndex], FitToGrid(mousePosition), Quaternion.identity).GetComponent<Building>();
         isBuilding = true;
     }
     private void Building()
@@ -78,19 +78,25 @@ public class BuildManager : MonoBehaviour
 
     private void EndBuilding()
     {
-        List<RaycastResult> results = new List<RaycastResult>();
+        List<RaycastResult> results = new();
 
-        pointerEventData = new PointerEventData(eventSystem);
-        pointerEventData.position = Input.mousePosition;
+        pointerEventData = new PointerEventData(eventSystem)
+        {
+            position = Input.mousePosition
+        };
 
         raycaster.Raycast(pointerEventData, results);
 
         foreach(RaycastResult result in results)
         {
             if (result.gameObject.TryGetComponent<BuildButton>(out BuildButton button))
+            {
                 Destroy(buildingObject);
+                return;
+            }
         }
 
+        buildingObject.OnBuild();
         buildingObject = null;
         isBuilding = false;
     }
