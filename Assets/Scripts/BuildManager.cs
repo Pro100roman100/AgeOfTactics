@@ -20,6 +20,10 @@ public class BuildManager : MonoBehaviour
     [Header("Masks")]
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask UIMask;
+    [Header("GUI")]
+    [SerializeField] private GraphicRaycaster raycaster;
+    [SerializeField] private EventSystem eventSystem;
+    private PointerEventData pointerEventData;
 
     private Building buildingObject = null;
     private RaycastHit2D hit;
@@ -31,7 +35,6 @@ public class BuildManager : MonoBehaviour
             builder = this;
         building = new Building[buildingArea.x, buildingArea.y];
     }
-
     private void Update()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -48,7 +51,6 @@ public class BuildManager : MonoBehaviour
         if(!isBuilding)
             DestroyBuilding();
     }
-
     public static Vector3 FitToGrid(Vector3 original)
     {
         Vector3 output;
@@ -60,7 +62,6 @@ public class BuildManager : MonoBehaviour
 
         return output;
     }
-
     public static void StartBuilding(int prefabIndex)
     {
         builder.buildingObject = Instantiate(builder.prefabs[prefabIndex], FitToGrid(mousePosition), Quaternion.identity).GetComponent<Building>();
@@ -70,12 +71,6 @@ public class BuildManager : MonoBehaviour
     {
         buildingObject.transform.position = FitToGrid(mousePosition);
     }
-
-    [Header("GUI")]
-    [SerializeField] private GraphicRaycaster raycaster;
-    [SerializeField] private EventSystem eventSystem;
-    private PointerEventData pointerEventData;
-
     private void EndBuilding()
     {
         List<RaycastResult> results = new();
@@ -92,6 +87,7 @@ public class BuildManager : MonoBehaviour
             if (result.gameObject.TryGetComponent<BuildButton>(out BuildButton button))
             {
                 Destroy(buildingObject);
+                isBuilding = false;
                 return;
             }
         }
@@ -100,7 +96,6 @@ public class BuildManager : MonoBehaviour
         buildingObject = null;
         isBuilding = false;
     }
-
     private bool DestroyBuilding()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -113,13 +108,13 @@ public class BuildManager : MonoBehaviour
         {
             if((hit.collider == null || hit.collider != oldHit.collider) && oldHit.collider != null)
             {
-                if (oldHit.transform.TryGetComponent(out Block blockComponent)) blockComponent.StopBreak();
+                if (oldHit.transform.TryGetComponent(out Building blockComponent)) blockComponent.StopBreak();
             }else if (Input.GetMouseButtonDown(0))
             {
-                if (hit.transform.TryGetComponent(out Block blockComponent)) blockComponent.StartBreak();
+                if (hit.transform.TryGetComponent(out Building blockComponent)) blockComponent.StartBreak();
             }else if (Input.GetMouseButtonUp(0))
             {
-                if (hit.transform.TryGetComponent(out Block blockComponent)) blockComponent.StopBreak();
+                if (hit.transform.TryGetComponent(out Building blockComponent)) blockComponent.StopBreak();
             }
 
             oldHit = hit;

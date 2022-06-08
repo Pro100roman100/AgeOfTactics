@@ -6,8 +6,25 @@ public abstract class Building : MonoBehaviour
 {
     public Vector2 size;
     public Vector2 offset;
+    [HideInInspector] public SpriteRenderer renderComponent;
 
-    public void OnBuild() { return; }
+    public void OnBuild() { return; }    public void OnDestroy() { return; }
+    private void Awake()
+    {
+        renderComponent = GetComponent<SpriteRenderer>();
+    }
+    public void StartBreak()
+    {
+        StartCoroutine(Break());
+    }
+    public void StopBreak()
+    {
+        StopAllCoroutines();
+    }
+    IEnumerator Break()
+    {
+        yield return new WaitForSeconds(.5f);
 
-    public void OnDestroy() { return; }
+        Destroy(this.gameObject);
+    }
 }
