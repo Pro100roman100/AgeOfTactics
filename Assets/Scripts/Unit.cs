@@ -18,9 +18,9 @@ abstract public class Unit : MonoBehaviour
 
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool isReloaded = true;
-    private Health health;
+    private HealthManager health;
 
-    public void Shoot()
+    public virtual void Shoot()
     {
         if (!isReloaded || nearestTarget == null)
             return;
@@ -38,20 +38,20 @@ abstract public class Unit : MonoBehaviour
         isReloaded = false;
         StartCoroutine(Reload());
     }
-    public void Move()
+    public virtual void Move()
     {
         transform.Translate(speed * Time.deltaTime * Vector2.right);
     }
-    public void OnCreate()
+    public virtual void OnCreate()
     {
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
-        health = GetComponent<Health>();
+        health = GetComponent<HealthManager>();
         streng += UpdatesManager.addStreng;
 
         health.maxHealth += UpdatesManager.addHealth;
         health.Heal(UpdatesManager.addHealth);
     }
-    public void OnDestroy() { return; }
+    public virtual void OnDestroy() { return; }
     private void RefreshTargets()
     {
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, range, mask);

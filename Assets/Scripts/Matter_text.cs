@@ -13,7 +13,7 @@ public class Matter_text : MonoBehaviour
     {
         if(oldMatter != MatterManager.matter)
         {
-            text.text = prefix + MatterManager.matter.ToString();
+            text.text = prefix + Mathf.Floor(MatterManager.matter).ToString();
         }
         oldMatter = MatterManager.matter;
     }

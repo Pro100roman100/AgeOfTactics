@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public enum SellType
+{
+    GroundEmpty,
+    GroundFilled,
+    AirEmpty,
+    AirFilled
+}
+
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager builder = null;
@@ -16,18 +24,16 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private float sellSize = 1f;
     [SerializeField] private Vector2Int buildingArea = new(5, 10);
     [Header("Prefabs")]
-    [SerializeField] private GameObject[] prefabs;
+    public Building[] prefabs;
+    private SellType[,] grid;
     [Header("Masks")]
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask UIMask;
-    [Header("GUI")]
-    [SerializeField] private GraphicRaycaster raycaster;
-    [SerializeField] private EventSystem eventSystem;
-    private PointerEventData pointerEventData;
 
     private Building buildingObject = null;
     private RaycastHit2D hit;
     private RaycastHit2D oldHit;
+    private bool canBuild;
 
     private void Awake()
     {
@@ -64,13 +70,33 @@ public class BuildManager : MonoBehaviour
     }
     public static void StartBuilding(int prefabIndex)
     {
-        builder.buildingObject = Instantiate(builder.prefabs[prefabIndex], FitToGrid(mousePosition), Quaternion.identity).GetComponent<Building>();
+        builder.buildingObject = Instantiate(
+            builder.prefabs[prefabIndex].gameObject, 
+            FitToGrid(mousePosition), 
+            Quaternion.identity
+            ).GetComponent<Building>();
         isBuilding = true;
     }
     private void Building()
     {
         buildingObject.transform.position = FitToGrid(mousePosition);
+        if (buildingObject.cost > MatterManager.matter)
+        {
+            buildingObject.renderComponent.color = buildingObject.cantBuildColor;
+            canBuild = false;
+        }
+        else
+        {
+            buildingObject.renderComponent.color = buildingObject.unbuildedColor;
+            canBuild = true;
+        }
     }
+
+    [Header("GUI")]
+    [SerializeField] private GraphicRaycaster raycaster;
+    [SerializeField] private EventSystem eventSystem;
+    private PointerEventData pointerEventData;
+
     private void EndBuilding()
     {
         List<RaycastResult> results = new();
@@ -84,12 +110,20 @@ public class BuildManager : MonoBehaviour
 
         foreach(RaycastResult result in results)
         {
-            if (result.gameObject.TryGetComponent<BuildButton>(out BuildButton button))
+            if(result.gameObject.CompareTag("UI"))
             {
-                Destroy(buildingObject);
+                Destroy(buildingObject.gameObject);
+                buildingObject = null;
                 isBuilding = false;
                 return;
             }
+        }
+        if (!canBuild)
+        {
+            Destroy(buildingObject.gameObject);
+            buildingObject = null;
+            isBuilding = false;
+            return;
         }
 
         buildingObject.OnBuild();

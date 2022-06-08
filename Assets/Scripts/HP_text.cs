@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class HP_text : MonoBehaviour
 {
-    [SerializeField] private Health enemyBaseHealth;
+    [SerializeField] private HealthManager enemyBaseHealth;
     [SerializeField] private Image healthBar;
 
     private float oldHealth;
 
     private void Start()
     {
-        oldHealth = enemyBaseHealth.health;
+        oldHealth = enemyBaseHealth.Health;
     }
     private void Update()
     {
-        if (oldHealth == enemyBaseHealth.health)
+        if (oldHealth == enemyBaseHealth.Health)
             return;
-        oldHealth = enemyBaseHealth.health;
-        healthBar.fillAmount = enemyBaseHealth.health / enemyBaseHealth.maxHealth;
+        oldHealth = enemyBaseHealth.Health;
+        healthBar.fillAmount = enemyBaseHealth.Health / enemyBaseHealth.maxHealth;
     }
 }

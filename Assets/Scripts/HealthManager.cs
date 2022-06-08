@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Health : MonoBehaviour
+public class HealthManager : MonoBehaviour
 {
     public float maxHealth = 100;
-    [HideInInspector] public float health { get; private set; }
+    [HideInInspector] public float Health { get; private set; }
     
     private void Awake()
     {
-        health = maxHealth;       
+        Health = maxHealth;
     }
-
     private void Update()
     {
 //For testing, use left ctrl to kill all units
@@ -24,20 +23,17 @@ public class Health : MonoBehaviour
 
     public void Heal(float heal)
     {
-        if (health + heal >= maxHealth)
-            health = maxHealth;
+        if (Health + heal >= maxHealth)
+            Health = maxHealth;
     }
-
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        Health -= damage;
+        if (Health <= 0)
             Kill();
     }
-
     public void Kill()
     {
         Destroy(this.gameObject);
     }
-   
 }

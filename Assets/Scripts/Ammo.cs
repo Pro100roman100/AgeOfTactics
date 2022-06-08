@@ -7,7 +7,7 @@ public class Ammo : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
-            collision.GetComponent<Health>().TakeDamage(150);
+            collision.GetComponent<HealthManager>().TakeDamage(150);
         Destroy(this.gameObject);
     }
 }
