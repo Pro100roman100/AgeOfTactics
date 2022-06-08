@@ -21,6 +21,7 @@ public class BuildManager : MonoBehaviour
     public static Vector3 mousePosition;
 
     [Header("Grid")]
+    [SerializeField] private Vector2 buildingAreaOffset;
     [SerializeField] private Vector2 gridOffset;
     private readonly float sellSize = 1f;
     [SerializeField] private Vector2Int buildingArea = new(5, 10);
@@ -30,6 +31,7 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask UIMask;
 
+    private bool recalculated = false;
     private Building buildingObject = null;
     private RaycastHit2D hit;
     private RaycastHit2D oldHit;
@@ -39,7 +41,7 @@ public class BuildManager : MonoBehaviour
     {
         RecalculateBuilder();
         building = new Building[buildingArea.x, buildingArea.y];
-        grid = new SellType[buildingArea.x - 1, buildingArea.y - 1];
+        grid = new SellType[buildingArea.x, buildingArea.y];
 
         for (int i = 0; i < buildingArea.x; i++)
         {
@@ -49,7 +51,9 @@ public class BuildManager : MonoBehaviour
     public static void RecalculateBuilder()
     {
         if (builder == null)
+        {
             builder = FindObjectOfType<BuildManager>();
+        }
     }
     private void Update()
     {
@@ -69,7 +73,7 @@ public class BuildManager : MonoBehaviour
     }
     public static Vector3 FitToGrid(Vector3 original)
     {
-        RecalculateBuilder();
+        //RecalculateBuilder();
         Vector3 output;
 
         output = new(
@@ -188,10 +192,10 @@ public class BuildManager : MonoBehaviour
     {
         Gizmos.color = Color.black;
 
-        Vector3 pos = Vector3.up * buildingArea.y/2 + (Vector3)gridOffset;
+        Vector3 pos = Vector3.up * buildingArea.y/2 + (Vector3)buildingAreaOffset + (Vector3)gridOffset;
         if (buildingArea.x % 2 == 0)
             pos.x += .5f;
 
-        Gizmos.DrawWireCube(pos, DrawGridSection((Vector3Int)buildingArea));
+        Gizmos.DrawWireCube(pos, DrawGridSection((Vector3Int) buildingArea));
     }
 }
