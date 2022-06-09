@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Turret : Building 
+public class Turret_All : Building 
 {
     [Header("Shooting")]
     [SerializeField] private float range = 5f;
@@ -13,9 +13,12 @@ public abstract class Turret : Building
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float streng;
+    [Header("Moving")]
+    [SerializeField] private float speed = 1f;
 
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool isReloaded = true;
+    private HealthManager health;
 
     public virtual void Shoot()
     {
@@ -36,12 +39,17 @@ public abstract class Turret : Building
         isReloaded = false;
         StartCoroutine(Reload());
     }
-    public override void OnBuild()
+   
+    public virtual void OnCreate()
     {
-        base.OnBuild();
-
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
+        health = GetComponent<HealthManager>();
+        streng += UpdatesManager.addStreng;
+
+        health.maxHealth += UpdatesManager.addHealth;
+        health.Heal(UpdatesManager.addHealth);
     }
+    public virtual void OnDestroy() { return; }
     private void RefreshTargets()
     {
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, range, mask);
@@ -65,10 +73,8 @@ public abstract class Turret : Building
         yield return new WaitForSeconds(reloadSpeed);
         isReloaded = true;
     }
-    public override void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
-        base.OnDrawGizmosSelected();
-
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
