@@ -59,7 +59,7 @@ public abstract class Building : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    private void OnDrawGizmosSelected()
+    public virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.black;
         Vector3 localOffset = Vector3.zero;
