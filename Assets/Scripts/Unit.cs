@@ -33,6 +33,7 @@ abstract public class Unit : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation
              (nearestTarget.transform.position - transform.position, transform.TransformDirection(Vector3.up));
         bullet.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+        bullet.GetComponent<Ammo>().damage = streng;
 
 
         isReloaded = false;

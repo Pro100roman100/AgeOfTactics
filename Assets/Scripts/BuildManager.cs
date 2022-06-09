@@ -31,7 +31,6 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private LayerMask UIMask;
 
-    private bool recalculated = false;
     private Building buildingObject = null;
     private RaycastHit2D hit;
     private RaycastHit2D oldHit;
@@ -46,6 +45,13 @@ public class BuildManager : MonoBehaviour
         for (int i = 0; i < buildingArea.x; i++)
         {
             grid[i, 0] = SellType.GroundEmpty;
+        }
+        for (int i = 0; i < buildingArea.x; i++)
+        {
+            for (int j = 1; j < buildingArea.y; j++)
+            {
+                grid[i, j] = SellType.AirEmpty;
+            }
         }
     }
     public static void RecalculateBuilder()
@@ -96,6 +102,17 @@ public class BuildManager : MonoBehaviour
             rightBottomPoint.y -= 1;
 
         result = new(leftTopPoint.x - rightBottomPoint.x, leftTopPoint.y - rightBottomPoint.y);
+
+        return result;
+    }
+    public static Vector2Int[] DrawGridSection(Vector3Int size, bool getPosOnGrid)
+    {
+        Vector2Int[] result = new Vector2Int[size.x*size.y];
+
+        Vector3 leftTopPoint = new(0.5f + size.x / 2, -0.5f - size.y / 2);
+        Vector3 rightBottomPoint = new(-0.5f - size.x / 2, 0.5f + size.y / 2);
+
+
 
         return result;
     }

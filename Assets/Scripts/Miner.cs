@@ -12,6 +12,7 @@ public class Miner : Building
     }
     public override void OnUnbuild()
     {
+        base.OnUnbuild();
         MatterManager.Manager.matterPerSecond -= matterAdd;
     }
 }
