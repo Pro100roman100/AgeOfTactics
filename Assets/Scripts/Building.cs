@@ -14,12 +14,21 @@ public abstract class Building : MonoBehaviour
     public Color cantBuildColor;
     public bool placeOnGround = false;
 
-    [HideInInspector] public SpriteRenderer renderComponent;
+    [HideInInspector] public SpriteRenderer[] renderComponent;
     [HideInInspector] public bool builded = false;
+
+    public void ChangeColor(Color color)
+    {
+        foreach(SpriteRenderer renderer in renderComponent)
+        {
+            renderer.color = color;
+        }
+    }
+
     public virtual void OnBuild() 
     {
         colider.enabled = true;
-        renderComponent.color = buildedColor;
+        ChangeColor(buildedColor);
         MatterManager.matter -= cost;
         builded = true;
     }
@@ -29,10 +38,10 @@ public abstract class Building : MonoBehaviour
     }
     private void Awake()
     {
-        renderComponent = GetComponent<SpriteRenderer>();
+        renderComponent = GetComponentsInChildren<SpriteRenderer>();
         //rb = GetComponent<Rigidbody2D>();
         colider = GetComponent<Collider2D>();
-        renderComponent.color = unbuildedColor;
+        ChangeColor(unbuildedColor);
     }
     public void StartBreak()
     {

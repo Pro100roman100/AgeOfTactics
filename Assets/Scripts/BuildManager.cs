@@ -130,12 +130,12 @@ public class BuildManager : MonoBehaviour
         buildingObject.transform.position = FitToGrid(mousePosition);
         if (buildingObject.cost > MatterManager.matter)
         {
-            buildingObject.renderComponent.color = buildingObject.cantBuildColor;
+            buildingObject.ChangeColor(buildingObject.cantBuildColor);
             canBuild = false;
         }
         else
         {
-            buildingObject.renderComponent.color = buildingObject.unbuildedColor;
+            buildingObject.ChangeColor(buildingObject.cantBuildColor);
             canBuild = true;
         }
     }

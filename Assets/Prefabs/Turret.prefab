@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6736584677005361677}
   - component: {fileID: 9143625146397745686}
-  - component: {fileID: 1295472277567354422}
   m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
@@ -85,27 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1295472277567354422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072442536944967252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db739d2eb404a17409d4cead83738bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 1, y: 1}
-  offset: {x: 0, y: 0}
-  cost: 0
-  buildedColor: {r: 0, g: 0, b: 0, a: 1}
-  unbuildedColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.50980395}
-  cantBuildColor: {r: 1, g: 0, b: 0, a: 0.50980395}
-  placeOnGround: 0
-  renderComponent: {fileID: 0}
-  builded: 0
 --- !u!1 &2221509329371968970
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5846951637107379945}
   - component: {fileID: 2977606480228627796}
-  - component: {fileID: 3198734489227167922}
   m_Layer: 3
   m_Name: Square (1)
   m_TagString: Untagged
@@ -191,27 +168,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3198734489227167922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2221509329371968970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db739d2eb404a17409d4cead83738bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 1, y: 1}
-  offset: {x: 0, y: 0}
-  cost: 0
-  buildedColor: {r: 1, g: 0.47450984, b: 0, a: 1}
-  unbuildedColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.50980395}
-  cantBuildColor: {r: 1, g: 0, b: 0, a: 0.50980395}
-  placeOnGround: 0
-  renderComponent: {fileID: 0}
-  builded: 0
 --- !u!1 &3664057626728640627
 GameObject:
   m_ObjectHideFlags: 0
@@ -248,7 +204,7 @@ Transform:
   - {fileID: 6736584677005361677}
   - {fileID: 5846951637107379945}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5528514330764124338
 SpriteRenderer:
@@ -380,7 +336,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6501086943434731526}
   - component: {fileID: 5833477018955917167}
-  - component: {fileID: 8896877786991435461}
   m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
@@ -455,24 +410,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8896877786991435461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8703972696732622944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db739d2eb404a17409d4cead83738bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: {x: 1, y: 1}
-  offset: {x: 0, y: 0}
-  cost: 0
-  buildedColor: {r: 1, g: 0.47450984, b: 0, a: 1}
-  unbuildedColor: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 0.50980395}
-  cantBuildColor: {r: 1, g: 0, b: 0, a: 0.50980395}
-  placeOnGround: 0
-  renderComponent: {fileID: 0}
-  builded: 0
