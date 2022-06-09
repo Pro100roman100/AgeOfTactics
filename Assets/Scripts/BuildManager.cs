@@ -135,7 +135,7 @@ public class BuildManager : MonoBehaviour
         }
         else
         {
-            buildingObject.ChangeColor(buildingObject.cantBuildColor);
+            buildingObject.ChangeColor(buildingObject.unbuildedColor);
             canBuild = true;
         }
     }
