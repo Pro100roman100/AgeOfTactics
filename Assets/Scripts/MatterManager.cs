@@ -18,6 +18,10 @@ public class MatterManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A))
+            matter += 1000;
+#endif
         matter += matterPerSecond * Time.deltaTime;
         if (matter < 0) Debug.LogError("Matter < 0");
     }
