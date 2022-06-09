@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: -5942133635556876001}
   - component: {fileID: -1835676117312973006}
   - component: {fileID: 4310987841434188020}
-  m_Layer: 3
+  - component: {fileID: 5307143118981915038}
+  m_Layer: 8
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,9 +150,23 @@ MonoBehaviour:
   size: {x: 1, y: 1}
   offset: {x: 0, y: 0}
   cost: 50
-  buildedColor: {r: 1, g: 1, b: 1, a: 1}
+  buildedColor: {r: 0.33490568, g: 0.48618227, b: 1, a: 1}
   unbuildedColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.5019608}
   cantBuildColor: {r: 0.9716981, g: 0, b: 0, a: 0.50980395}
   placeOnGround: 0
-  renderComponent: {fileID: 0}
+  renderComponent:
+  - {fileID: 0}
   builded: 0
+--- !u!114 &5307143118981915038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000046513265977934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08fdeb8bcc1be04e8845db19cfb46d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
