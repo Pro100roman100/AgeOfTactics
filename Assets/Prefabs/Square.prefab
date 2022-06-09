@@ -94,7 +94,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000046513265977934}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   cost: 50
   buildedColor: {r: 1, g: 1, b: 1, a: 1}
-  unbuildedColor: {r: 1, g: 1, b: 1, a: 0.5019608}
-  cantBuildColor: {r: 1, g: 0.645283, b: 0.645283, a: 0.5019608}
+  unbuildedColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0.5019608}
+  cantBuildColor: {r: 0.9716981, g: 0, b: 0, a: 0.50980395}
   placeOnGround: 0
   renderComponent: {fileID: 0}
   builded: 0
