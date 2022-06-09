@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Turret : Building 
+public abstract class Turret : Building
 {
     [Header("Shooting")]
     [SerializeField] private float range = 5f;
@@ -32,9 +32,8 @@ public abstract class Turret : Building
         bullet.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
         bullet.GetComponent<Ammo>().damage = streng;
 
-
         isReloaded = false;
-        StartCoroutine(Reload());
+        StartCoroutine(ReloadTurret());
     }
     public override void OnBuild()
     {
@@ -60,10 +59,13 @@ public abstract class Turret : Building
                 nearestTarget = target.transform;
         }
     }
-    IEnumerator Reload()
+    private IEnumerator ReloadTurret()
     {
-        yield return new WaitForSeconds(reloadSpeed);
-        isReloaded = true;
+        while (!isReloaded)
+        {
+            yield return new WaitForSeconds(reloadSpeed);
+            isReloaded = true;
+        }
     }
     public override void OnDrawGizmosSelected()
     {

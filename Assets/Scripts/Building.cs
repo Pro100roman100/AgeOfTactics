@@ -16,6 +16,7 @@ public abstract class Building : MonoBehaviour
 
     [HideInInspector] public SpriteRenderer[] renderComponent;
     [HideInInspector] public bool builded = false;
+    private Coroutine courutineBreak;
 
     public void ChangeColor(Color color)
     {
@@ -45,11 +46,13 @@ public abstract class Building : MonoBehaviour
     }
     public void StartBreak()
     {
-        StartCoroutine(Break());
+        courutineBreak = StartCoroutine(Break());
     }
     public void StopBreak()
     {
-        StopAllCoroutines();
+        if (courutineBreak == null)
+            return;
+        StopCoroutine(courutineBreak);
     }
     IEnumerator Break()
     {

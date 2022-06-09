@@ -7,6 +7,8 @@ public class TestTurret : Turret
     private void FixedUpdate()
     {
         if (nearestTarget != null)
+        {
             Shoot();
+        }
     }
 }
