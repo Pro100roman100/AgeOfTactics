@@ -149,10 +149,11 @@ MonoBehaviour:
   size: {x: 1, y: 1}
   offset: {x: 0, y: 0}
   cost: 150
-  buildedColor: {r: 0.34509805, g: 1, b: 0.23921569, a: 1}
+  buildedColor: {r: 0.5249222, g: 1, b: 0.4481132, a: 1}
   unbuildedColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 0.5019608}
   cantBuildColor: {r: 1, g: 0, b: 0, a: 0.5019608}
   placeOnGround: 1
-  renderComponent: {fileID: 0}
+  renderComponent:
+  - {fileID: 0}
   builded: 0
   matterAdd: 10

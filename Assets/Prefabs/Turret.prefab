@@ -274,7 +274,7 @@ MonoBehaviour:
   size: {x: 1, y: 1}
   offset: {x: 0, y: 0}
   cost: 100
-  buildedColor: {r: 1, g: 0, b: 0, a: 1}
+  buildedColor: {r: 1, g: 0.4009434, b: 0.4009434, a: 1}
   unbuildedColor: {r: 0.5754717, g: 0.5124956, b: 0.5124956, a: 0.79607844}
   cantBuildColor: {r: 0.8679245, g: 0.6255607, b: 0.6255607, a: 0.6117647}
   placeOnGround: 0
