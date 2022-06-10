@@ -8,8 +8,8 @@ public class UI : MonoBehaviour
     private GameObject Block;
     private GameObject Miner;
     private GameObject Turret;
-
-
+    //:)
+    bool ACTIVATOR; 
     private void Awake()
     {
         Block = GameObject.Find("Block");
@@ -18,13 +18,26 @@ public class UI : MonoBehaviour
         Block.SetActive(false);
         Miner.SetActive(false);
         Turret.SetActive(false);
+        ACTIVATOR =false;
     }
 
     public void Click()
     {
-        Block.SetActive(true);
-        Miner.SetActive(true);
-        Turret.SetActive(true);
+        if (ACTIVATOR == false)
+        {
+            Block.SetActive(true);
+            Miner.SetActive(true);
+            Turret.SetActive(true);
+            ACTIVATOR = true;
+        }
+        else
+        {
+            Block.SetActive(false);
+            Miner.SetActive(false);
+            Turret.SetActive(false);
+            ACTIVATOR = false;
+        }
+
     }
 }
 
