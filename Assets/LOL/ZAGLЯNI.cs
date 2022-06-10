@@ -5,5 +5,5 @@ using UnityEngine;
 public class ZAGLЯNI : MonoBehaviour
 {
     //Капец просто
-    //в визуа лстуди окоде нету что комперить
+    //https://www.youtube.com/post/UgkxUCkkwgQ8PnlLxpAq7gNIjTnCu7X68KSX
 }
