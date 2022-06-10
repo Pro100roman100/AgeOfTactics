@@ -9,7 +9,7 @@ public class UI : MonoBehaviour
     private GameObject Miner;
     private GameObject Turret;
     //:)
-    bool ACTIVATOR; 
+    bool ACTIVATOR;
     private void Awake()
     {
         Block = GameObject.Find("Block");
