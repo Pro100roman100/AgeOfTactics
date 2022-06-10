@@ -35,6 +35,7 @@ public class BuildManager : MonoBehaviour
     private RaycastHit2D hit;
     private RaycastHit2D oldHit;
     private bool canBuild;
+    private Vector2 zeroSell;
 
     private void Awake()
     {
@@ -48,11 +49,22 @@ public class BuildManager : MonoBehaviour
         }
         for (int i = 0; i < buildingArea.x; i++)
         {
-            for (int j = 1; j < buildingArea.y; j++)
+            string value = "";
+            for (int j = 0; j < buildingArea.y; j++)
             {
-                grid[i, j] = SellType.AirEmpty;
+                if (j == 0)
+                    grid[i, j] = SellType.GroundEmpty;
+                else
+                    grid[i, j] = SellType.AirEmpty;
+
+                value += ((int)grid[i, j]);
             }
         }
+
+        if (buildingArea.x % 2 == 0)
+            zeroSell = buildingAreaOffset - new Vector2(buildingArea.x / 2 - 1, -1);
+        else
+            zeroSell = buildingAreaOffset - new Vector2(buildingArea.x / 2, -1);
     }
     public static void RecalculateBuilder()
     {
@@ -89,30 +101,33 @@ public class BuildManager : MonoBehaviour
 
         return output;
     }
+    /// <summary>
+    /// return size of object
+    /// </summary>
+    /// <param name="size">size of object</param>
+    /// <returns>returns size of object</returns>
     public static Vector3 DrawGridSection(Vector3Int size)
     {
         Vector3 result;
 
-        Vector3 leftTopPoint = new(0.5f + size.x / 2, -0.5f - size.y / 2);
-        Vector3 rightBottomPoint = new(-0.5f - size.x / 2, 0.5f + size.y / 2);
-
-        if (size.x % 2 == 0)
-            leftTopPoint.x -= 1;
-        if (size.y % 2 == 0)
-            rightBottomPoint.y -= 1;
-
-        result = new(leftTopPoint.x - rightBottomPoint.x, leftTopPoint.y - rightBottomPoint.y);
+        result = size;
 
         return result;
     }
-    public static Vector2Int[] DrawGridSection(Vector3Int size, bool getPosOnGrid)
+    /// <summary>
+    /// return array of coordinates on grid
+    /// </summary>
+    /// <param name="size">size of object</param>
+    /// <param name="position">position of start sell</param>
+    /// <returns>array of coordinates on grid</returns>
+    public static Vector2[] DrawGridSection(Vector3Int size, Vector3 position)
     {
-        Vector2Int[] result = new Vector2Int[size.x*size.y];
+        Vector2[] result = new Vector2[size.x * size.y];
 
-        Vector3 leftTopPoint = new(0.5f + size.x / 2, -0.5f - size.y / 2);
-        Vector3 rightBottomPoint = new(-0.5f - size.x / 2, 0.5f + size.y / 2);
-
-
+        for (int i = 0; i < size.x * size.y; i++)
+        {
+            result[i] = position - (Vector3)builder.zeroSell;
+        }
 
         return result;
     }
@@ -137,6 +152,19 @@ public class BuildManager : MonoBehaviour
         {
             buildingObject.ChangeColor(buildingObject.unbuildedColor);
             canBuild = true;
+        }
+
+        foreach (Vector2 pos in DrawGridSection(Vector3Int.one, buildingObject.transform.position))
+        {
+            if (pos.x < 0 || pos.x > buildingArea.x - 1 || pos.y < 0 || pos.y > buildingArea.y - 1)
+            {
+                buildingObject.ChangeColor(buildingObject.cantBuildColor);
+                canBuild = false;
+            }else if (grid[(int)pos.x, (int)pos.y] == SellType.AirFilled || grid[(int)pos.x, (int)pos.y] == SellType.GroundFilled)
+            {
+                buildingObject.ChangeColor(buildingObject.cantBuildColor);
+                canBuild = false;
+            }
         }
     }
 
@@ -172,6 +200,19 @@ public class BuildManager : MonoBehaviour
             buildingObject = null;
             isBuilding = false;
             return;
+        }
+
+        foreach (Vector2 pos in DrawGridSection(Vector3Int.one, buildingObject.transform.position))
+        {
+            switch (grid[(int)pos.x, (int)pos.y])
+            {
+                case SellType.AirEmpty:
+                    grid[(int)pos.x, (int)pos.y] = SellType.AirFilled;
+                    break;
+                case SellType.GroundEmpty:
+                    grid[(int)pos.x, (int)pos.y] = SellType.AirFilled;
+                    break;
+            }
         }
 
         buildingObject.OnBuild();
@@ -210,8 +251,8 @@ public class BuildManager : MonoBehaviour
         Gizmos.color = Color.black;
 
         Vector3 pos = Vector3.up * buildingArea.y/2 + (Vector3)buildingAreaOffset + (Vector3)gridOffset;
-        if (buildingArea.x % 2 == 0)
-            pos.x += .5f;
+        if (buildingArea.x % 2 != 0)
+            pos.x -= .5f;
 
         Gizmos.DrawWireCube(pos, DrawGridSection((Vector3Int) buildingArea));
     }
