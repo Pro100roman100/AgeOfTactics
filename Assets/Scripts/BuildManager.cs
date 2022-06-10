@@ -15,8 +15,7 @@ public enum SellType
 public class BuildManager : MonoBehaviour
 {
     public static BuildManager builder = null;
-    public static Building[,] building;
-    private SellType[,] grid;
+    public static SellType[,] grid;
     public static bool isBuilding;
     public static Vector3 mousePosition;
 
@@ -40,7 +39,6 @@ public class BuildManager : MonoBehaviour
     private void Awake()
     {
         RecalculateBuilder();
-        building = new Building[buildingArea.x, buildingArea.y];
         grid = new SellType[buildingArea.x, buildingArea.y];
 
         for (int i = 0; i < buildingArea.x; i++)
@@ -164,6 +162,11 @@ public class BuildManager : MonoBehaviour
             {
                 buildingObject.ChangeColor(buildingObject.cantBuildColor);
                 canBuild = false;
+            }else if (grid[(int)pos.x, (int)pos.y] != SellType.GroundEmpty && 
+                !(grid[(int)pos.x, (int)pos.y-1] == SellType.GroundFilled || grid[(int)pos.x, (int)pos.y-1] == SellType.AirFilled))
+            {
+                buildingObject.ChangeColor(buildingObject.cantBuildColor);
+                canBuild = false;
             }
         }
     }
@@ -219,14 +222,14 @@ public class BuildManager : MonoBehaviour
         buildingObject = null;
         isBuilding = false;
     }
-    private bool DestroyBuilding()
+    private void DestroyBuilding()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, mask);
 
         if (hit.collider == null && oldHit.collider == null)
-            return false;
+            return;
         else
         {
             if((hit.collider == null || hit.collider != oldHit.collider) && oldHit.collider != null)
@@ -234,6 +237,12 @@ public class BuildManager : MonoBehaviour
                 if (oldHit.transform.TryGetComponent(out Building blockComponent)) blockComponent.StopBreak();
             }else if (Input.GetMouseButtonDown(0))
             {
+                Vector2 pos = DrawGridSection(Vector3Int.one, hit.transform.position)[0];
+                Debug.Log(pos.y + ", " + buildingArea.y);
+                if (pos.y != buildingArea.y-1)
+                    if(grid[(int)pos.x, (int)pos.y + 1] == SellType.AirFilled)
+                        return;
+
                 if (hit.transform.TryGetComponent(out Building blockComponent)) blockComponent.StartBreak();
             }else if (Input.GetMouseButtonUp(0))
             {
@@ -242,7 +251,7 @@ public class BuildManager : MonoBehaviour
 
             oldHit = hit;
 
-            return true;
+            return;
         }
     }
 
