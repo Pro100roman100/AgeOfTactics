@@ -22,12 +22,9 @@ public class UI : MonoBehaviour
 
     public void Click()
     {
-      
-
-            Block.SetActive(true);
-            Miner.SetActive(true);
-            Turret.SetActive(true);
-        
+        Block.SetActive(true);
+        Miner.SetActive(true);
+        Turret.SetActive(true);
     }
 }
 
