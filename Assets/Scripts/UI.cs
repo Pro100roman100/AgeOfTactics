@@ -20,7 +20,7 @@ public class UI : MonoBehaviour
         Turret.SetActive(false);
     }
 
-    private void OnClick()
+    public void Click()
     {
         Block.SetActive(true);
         Miner.SetActive(true);
