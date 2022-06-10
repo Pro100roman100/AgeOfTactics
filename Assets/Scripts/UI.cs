@@ -23,7 +23,7 @@ public class UI : MonoBehaviour
 
     public void Click()
     {
-        if (ACTIVATOR == false)
+        if (!ACTIVATOR)
         {
             Block.SetActive(true);
             Miner.SetActive(true);
