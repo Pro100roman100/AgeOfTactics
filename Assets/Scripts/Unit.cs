@@ -15,6 +15,8 @@ abstract public class Unit : MonoBehaviour
     [SerializeField] private float streng;
     [Header("Moving")]
     [SerializeField] private float speed = 1f;
+    [Header("Other")]
+    public float cost = 100f;
 
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool isReloaded = true;
@@ -45,6 +47,7 @@ abstract public class Unit : MonoBehaviour
     }
     public virtual void OnCreate()
     {
+        MatterManager.matter -= cost;
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
         health = GetComponent<HealthManager>();
         streng += UpdatesManager.addStreng;

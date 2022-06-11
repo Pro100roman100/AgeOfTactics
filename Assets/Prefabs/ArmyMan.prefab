@@ -479,5 +479,6 @@ MonoBehaviour:
   bulletSpeed: 5
   streng: 10
   speed: 0.7
+  cost: 100
   nearestTarget: {fileID: 0}
   isReloaded: 1

@@ -5,39 +5,42 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    private GameObject Block;
-    private GameObject Miner;
-    private GameObject Turret;
-    //:)
-    bool ACTIVATOR;
+    [SerializeField] private GameObjects[] objects;
+    
+    private bool[] active;
     private void Awake()
     {
-        Block = GameObject.Find("Block");
-        Miner = GameObject.Find("Miner");
-        Turret = GameObject.Find("Turret");
-        Block.SetActive(false);
-        Miner.SetActive(false);
-        Turret.SetActive(false);
-        ACTIVATOR =false;
+        active = new bool[objects.Length];
+        for (int i = 0; i < active.Length; i++)
+        {
+            active[i] = false;
+        }
     }
 
-    public void Click()
+    public void HideShowMenu(int index)
     {
-        if (!ACTIVATOR)
+        if (!active[index])
         {
-            Block.SetActive(true);
-            Miner.SetActive(true);
-            Turret.SetActive(true);
-            ACTIVATOR = true;
+            foreach(GameObject button in objects[index].objects)
+            {
+                button.SetActive(true);
+            }
+            active[index] = true;
         }
         else
         {
-            Block.SetActive(false);
-            Miner.SetActive(false);
-            Turret.SetActive(false);
-            ACTIVATOR = false;
+            foreach (GameObject button in objects[index].objects)
+            {
+                button.SetActive(false);
+            }
+            active[index] = false;
         }
 
     }
 }
 
+[System.Serializable]
+class GameObjects
+{
+    public GameObject[] objects;
+}

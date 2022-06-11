@@ -288,7 +288,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &54072144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -353,7 +353,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 54072146}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 290853024}
+        m_TargetAssemblyTypeName: UnitButton, Assembly-CSharp
+        m_MethodName: SpawnUnit
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &54072146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &106078517
 RectTransform:
   m_ObjectHideFlags: 0
@@ -541,7 +553,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 212276392}
-  - component: {fileID: 212276391}
   m_Layer: 0
   m_Name: SpawnUnits
   m_TagString: Untagged
@@ -549,19 +560,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &212276391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212276390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08ea7b6f724d614d888d8fe12b540df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 7418037198588982433, guid: c454c307b84112b4380ded26e620397f, type: 3}
 --- !u!4 &212276392
 Transform:
   m_ObjectHideFlags: 0
@@ -847,8 +845,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290853023}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
+        m_MethodName: HideShowMenu
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -909,6 +907,7 @@ GameObject:
   - component: {fileID: 290853020}
   - component: {fileID: 290853022}
   - component: {fileID: 290853023}
+  - component: {fileID: 290853024}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1012,9 +1011,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c932b671da2bcad4db1f6ccf865f1e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _1: {fileID: 0}
-  _2: {fileID: 0}
-  _3: {fileID: 0}
+  objects:
+  - objects:
+    - {fileID: 106078516}
+    - {fileID: 697918817}
+    - {fileID: 1807811064}
+  - objects:
+    - {fileID: 54072143}
+--- !u!114 &290853024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290853017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08ea7b6f724d614d888d8fe12b540df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab:
+  - {fileID: 7418037198588982433, guid: c454c307b84112b4380ded26e620397f, type: 3}
+  spawnPos: {fileID: 212276392}
 --- !u!1 &375530346
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,12 +1119,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 290853023}
         m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: Click
-        m_Mode: 1
+        m_MethodName: HideShowMenu
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1574,7 +1592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &697918818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2413,7 +2431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1807811065
 RectTransform:
   m_ObjectHideFlags: 0
