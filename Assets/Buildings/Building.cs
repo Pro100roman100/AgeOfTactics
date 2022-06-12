@@ -33,9 +33,42 @@ public abstract class Building : MonoBehaviour
         MatterManager.matter -= cost;
         builded = true;
     }
+
+    public void Destroy()
+    {
+        Vector2[] output = BuildManager.DrawGridSection((Vector3Int)size, transform.position);
+
+        foreach (Vector2 sell in output)
+        {
+            switch (BuildManager.grid[(int)sell.x, (int)sell.y])
+            {
+                case SellType.GroundFilled:
+                    BuildManager.grid[(int)sell.x, (int)sell.y] = SellType.GroundBroken;
+                    break;
+                case SellType.AirFilled:
+                    BuildManager.grid[(int)sell.x, (int)sell.y] = SellType.GroundBroken;
+                    break;
+            }
+        }
+    }
     public virtual void OnUnbuild() {
         if(!builded) return;
         MatterManager.matter += cost / 2;
+
+        Vector2[] output = BuildManager.DrawGridSection((Vector3Int)size, transform.position);
+
+        foreach (Vector2 sell in output)
+        {
+            switch (BuildManager.grid[(int)sell.x, (int)sell.y])
+            {
+                case SellType.GroundFilled:
+                    BuildManager.grid[(int)sell.x, (int)sell.y] = SellType.GroundEmpty;
+                    break;
+                case SellType.AirFilled:
+                    BuildManager.grid[(int)sell.x, (int)sell.y] = SellType.AirEmpty;
+                    break;
+            }
+        }
     }
     private void Awake()
     {
@@ -59,21 +92,6 @@ public abstract class Building : MonoBehaviour
         yield return new WaitForSeconds(.9f);
 
         OnUnbuild();
-
-        Vector2[] output = BuildManager.DrawGridSection((Vector3Int)size, transform.position);
-
-        foreach (Vector2 sell in output)
-        {
-            switch (BuildManager.grid[(int)sell.x, (int)sell.y])
-            {
-                case SellType.GroundFilled:
-                    BuildManager.grid[(int)sell.x, (int)sell.y] = SellType.AirFilled;
-                    break;
-                case SellType.AirFilled:
-                    BuildManager.grid[(int)sell.x, (int)sell.y] = SellType.AirEmpty;
-                    break;
-            }
-        }
 
         Destroy(this.gameObject);
     }

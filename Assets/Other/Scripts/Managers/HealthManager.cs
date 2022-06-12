@@ -34,6 +34,8 @@ public class HealthManager : MonoBehaviour
     }
     public void Kill()
     {
+        if(TryGetComponent<Building>(out Building building)) building.Destroy();
+        
         Destroy(this.gameObject);
     }
 }

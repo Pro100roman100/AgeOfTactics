@@ -8,8 +8,10 @@ public enum SellType
 {
     GroundEmpty,
     GroundFilled,
+    GroundBroken,
     AirEmpty,
-    AirFilled
+    AirFilled,
+    AirBroken
 }
 
 public class BuildManager : MonoBehaviour
@@ -213,7 +215,7 @@ public class BuildManager : MonoBehaviour
                     grid[(int)pos.x, (int)pos.y] = SellType.AirFilled;
                     break;
                 case SellType.GroundEmpty:
-                    grid[(int)pos.x, (int)pos.y] = SellType.AirFilled;
+                    grid[(int)pos.x, (int)pos.y] = SellType.GroundFilled;
                     break;
             }
         }
@@ -240,7 +242,7 @@ public class BuildManager : MonoBehaviour
                 Vector2 pos = DrawGridSection(Vector3Int.one, hit.transform.position)[0];
                 Debug.Log(pos.y + ", " + buildingArea.y);
                 if (pos.y != buildingArea.y-1)
-                    if(grid[(int)pos.x, (int)pos.y + 1] == SellType.AirFilled)
+                    if(grid[(int)pos.x, (int)pos.y + 1] == SellType.AirFilled || grid[(int)pos.x, (int)pos.y + 1] == SellType.AirBroken)
                         return;
 
                 if (hit.transform.TryGetComponent(out Building blockComponent)) blockComponent.StartBreak();
