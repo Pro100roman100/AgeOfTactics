@@ -149,5 +149,5 @@ MonoBehaviour:
   previousTech: []
   neededAllTechBefore: 0
   cost: 100
-  strengAdd: 10
-  speedAdd: 5
+  strengAdd: 100
+  speedAdd: 1

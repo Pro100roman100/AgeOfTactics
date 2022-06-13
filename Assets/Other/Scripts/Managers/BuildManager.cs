@@ -238,17 +238,6 @@ public class BuildManager : MonoBehaviour
         buildingObject.OnBuild();
         buildingObject = null;
         isBuilding = false;
-
-        string output = "";
-        for (int i = 0; i < buildingArea.y; i++)
-        {
-            for (int j = 0; j < buildingArea.x; j++)
-            {
-                output += ((int)grid[j, i]) + " ";
-            }
-            output += '\n';
-        }
-        Debug.Log(output);
     }
     private void DestroyBuilding()
     {
@@ -266,7 +255,6 @@ public class BuildManager : MonoBehaviour
             }else if (Input.GetMouseButtonDown(0))
             {
                 Vector2 pos = DrawGridSection(Vector3Int.one, hit.transform.position)[0];
-                Debug.Log(pos.y + ", " + buildingArea.y);
                 if (pos.y != buildingArea.y-1)
                     if(grid[(int)pos.x, (int)pos.y + 1] == SellType.AirFilled || grid[(int)pos.x, (int)pos.y + 1] == SellType.AirBroken)
                         return;
