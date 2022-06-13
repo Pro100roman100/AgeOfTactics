@@ -11,7 +11,11 @@ public abstract class Tech : MonoBehaviour
 
     public bool CanTech()
     {
-        if (previousTech.Length == 0)
+        if (researched)
+        {
+            return false;
+        }
+        else if (previousTech.Length == 0)
         {
             return true;
         }
