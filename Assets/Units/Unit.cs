@@ -19,14 +19,27 @@ abstract public class Unit : MonoBehaviour
     public float cost = 100f;
 
     [HideInInspector] public Transform nearestTarget;
+    [HideInInspector] public bool inRange;
     [HideInInspector] public bool isReloaded = true;
     private HealthManager health;
 
+    private void Update()
+    {
+        if (nearestTarget == null)
+            inRange = false;
+        else if(Vector3.SqrMagnitude(nearestTarget.position - transform.position) <= range * range)
+            inRange = true;
+        else
+            inRange = false;
+    }
+
     public virtual void Shoot()
     {
-        if (!isReloaded || nearestTarget == null)
+        if (!isReloaded || !inRange)
             return;
 
+        Debug.Log("Shoot");
+        
         GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
 
         Vector2 diferense = (nearestTarget.position - transform.position);
@@ -45,10 +58,13 @@ abstract public class Unit : MonoBehaviour
     {
         transform.Translate(speed * Time.deltaTime * Vector2.right);
     }
+
     public virtual void OnCreate()
     {
         MatterManager.matter -= cost;
+
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
+
         health = GetComponent<HealthManager>();
         streng += UpdatesManager.addStreng;
         speed += UpdatesManager.addSpeed;
@@ -57,9 +73,10 @@ abstract public class Unit : MonoBehaviour
         health.Heal(UpdatesManager.addHealth);
     }
     public virtual void OnDestroy() { return; }
+
     private void RefreshTargets()
     {
-        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, range, mask);
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, mask);
 
         if (targets.Length == 0)
         {

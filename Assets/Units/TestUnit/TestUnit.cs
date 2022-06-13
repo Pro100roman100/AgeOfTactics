@@ -6,7 +6,7 @@ public class TestUnit : Unit
 {
     private void FixedUpdate()
     {
-        if (nearestTarget == null)
+        if (!inRange)
             Move();
         else
             Shoot();
