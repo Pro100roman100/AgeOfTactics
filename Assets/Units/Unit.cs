@@ -51,6 +51,7 @@ abstract public class Unit : MonoBehaviour
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
         health = GetComponent<HealthManager>();
         streng += UpdatesManager.addStreng;
+        speed += UpdatesManager.addSpeed;
 
         health.maxHealth += UpdatesManager.addHealth;
         health.Heal(UpdatesManager.addHealth);

@@ -156,16 +156,31 @@ public class BuildManager : MonoBehaviour
 
         foreach (Vector2 pos in DrawGridSection(Vector3Int.one, buildingObject.transform.position))
         {
+            SellType actuallType;
+
             if (pos.x < 0 || pos.x > buildingArea.x - 1 || pos.y < 0 || pos.y > buildingArea.y - 1)
             {
                 buildingObject.ChangeColor(buildingObject.cantBuildColor);
                 canBuild = false;
-            }else if (grid[(int)pos.x, (int)pos.y] == SellType.AirFilled || grid[(int)pos.x, (int)pos.y] == SellType.GroundFilled)
+                return;
+            }
+            else
+                actuallType = grid[(int)pos.x, (int)pos.y];
+
+            if (actuallType == SellType.AirFilled || actuallType == SellType.GroundFilled)
             {
                 buildingObject.ChangeColor(buildingObject.cantBuildColor);
                 canBuild = false;
-            }else if (grid[(int)pos.x, (int)pos.y] != SellType.GroundEmpty && 
-                !(grid[(int)pos.x, (int)pos.y-1] == SellType.GroundFilled || grid[(int)pos.x, (int)pos.y-1] == SellType.AirFilled))
+            }
+            else if ((actuallType != SellType.GroundEmpty && actuallType != SellType.GroundBroken))
+            {
+                if (grid[(int)pos.x, (int)pos.y - 1] is not (SellType.GroundFilled or SellType.AirFilled))
+                {
+                    buildingObject.ChangeColor(buildingObject.cantBuildColor);
+                    canBuild = false;
+                }
+            }
+            if ((actuallType == SellType.AirBroken || actuallType == SellType.AirEmpty) && buildingObject.placeOnGround == true)
             {
                 buildingObject.ChangeColor(buildingObject.cantBuildColor);
                 canBuild = false;
@@ -223,6 +238,17 @@ public class BuildManager : MonoBehaviour
         buildingObject.OnBuild();
         buildingObject = null;
         isBuilding = false;
+
+        string output = "";
+        for (int i = 0; i < buildingArea.y; i++)
+        {
+            for (int j = 0; j < buildingArea.x; j++)
+            {
+                output += ((int)grid[j, i]) + " ";
+            }
+            output += '\n';
+        }
+        Debug.Log(output);
     }
     private void DestroyBuilding()
     {
