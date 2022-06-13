@@ -7,11 +7,15 @@ public abstract class Tech : MonoBehaviour
     [SerializeField] private Tech[] previousTech;
     [SerializeField] private bool neededAllTechBefore = false;
     [SerializeField] private float cost;
-    [HideInInspector] public bool researched { get; private set; } = false;
+    public bool researched { get; private set; } = false;
 
     public bool CanTech()
     {
-        if (neededAllTechBefore)
+        if (previousTech.Length == 0)
+        {
+            return true;
+        }
+        else if (neededAllTechBefore)
         {
             bool canTech = true;
             foreach (Tech tech in previousTech)
