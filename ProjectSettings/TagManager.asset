@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Base
-  - Enemy
   - UI
+  - Player_2
+  - Player_1
   layers:
   - Default
   - TransparentFX
@@ -17,8 +17,8 @@ TagManager:
   - ArmyMan
   - Ammo
   - Enemy
-  - 
-  - 
+  - player1
+  - player2
   - 
   - 
   - 

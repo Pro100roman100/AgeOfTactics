@@ -18,6 +18,7 @@ abstract public class Unit : MonoBehaviour
     [Header("Other")]
     public float cost = 100f;
 
+    [HideInInspector] public GameObject tagConnection;
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool inRange;
     [HideInInspector] public bool isReloaded = true;
@@ -64,13 +65,15 @@ abstract public class Unit : MonoBehaviour
         MatterManager.matter -= cost;
 
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
-
+        
         health = GetComponent<HealthManager>();
         streng += UpdatesManager.addStreng;
         speed += UpdatesManager.addSpeed;
 
         health.maxHealth += UpdatesManager.addHealth;
         health.Heal(UpdatesManager.addHealth);
+        tagConnection = GameObject.Find("Player_1_Base");
+        transform.gameObject.tag = tagConnection.tag;
     }
     public virtual void OnDestroy() { return; }
 

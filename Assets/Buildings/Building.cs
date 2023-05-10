@@ -14,6 +14,7 @@ public abstract class Building : MonoBehaviour
     public Color cantBuildColor;
     public bool placeOnGround = false;
 
+    [HideInInspector] public GameObject tagConnection;
     [HideInInspector] public SpriteRenderer[] renderComponent;
     [HideInInspector] public bool builded = false;
     private Coroutine courutineBreak;
@@ -32,6 +33,8 @@ public abstract class Building : MonoBehaviour
         ChangeColor(buildedColor);
         MatterManager.matter -= cost;
         builded = true;
+        tagConnection = GameObject.Find("Player_1_Base");
+        transform.gameObject.tag = tagConnection.tag ;
     }
 
     public void Destroy()
