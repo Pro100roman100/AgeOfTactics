@@ -7,7 +7,7 @@ abstract public class Unit : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private float range = 5f;
     [SerializeField] private float reloadSpeed = 1f;
-    [SerializeField] private LayerMask mask;
+    public LayerMask enemyMask;
     [Header("Bullet")]
     [SerializeField] private Transform bulletOrigin;
     [SerializeField] private GameObject bulletPrefab;
@@ -18,13 +18,29 @@ abstract public class Unit : MonoBehaviour
     [Header("Other")]
     public float cost = 100f;
 
+    [HideInInspector] public Vector2 movementDirection;
     [HideInInspector] public GameObject tagConnection;
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool inRange;
     [HideInInspector] public bool isReloaded = true;
     private HealthManager health;
 
-    private void Update()
+    public LayerMask changeMask
+    {
+        set
+        {
+            enemyMask = value;
+        }
+    }
+    public Vector2 SmovementDirection
+    {
+        get { return movementDirection; }
+        set 
+        {
+            movementDirection = value;
+        }
+    }
+private void Update()
     {
         if (nearestTarget == null)
             inRange = false;
@@ -33,13 +49,12 @@ abstract public class Unit : MonoBehaviour
         else
             inRange = false;
     }
-
     public virtual void Shoot()
     {
         if (!isReloaded || !inRange)
             return;
 
-        Debug.Log("Shoot");
+        //Debug.Log("Shoot");
         
         GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
 
@@ -57,7 +72,7 @@ abstract public class Unit : MonoBehaviour
     }
     public virtual void Move()
     {
-        transform.Translate(speed * Time.deltaTime * Vector2.right);
+        transform.Translate(speed * Time.deltaTime * movementDirection);
     }
 
     public virtual void OnCreate()
@@ -79,7 +94,7 @@ abstract public class Unit : MonoBehaviour
 
     private void RefreshTargets()
     {
-        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, mask);
+        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
 
         if (targets.Length == 0)
         {
@@ -91,7 +106,7 @@ abstract public class Unit : MonoBehaviour
 
         foreach (Collider2D target in targets)
         {
-            if (Vector3.SqrMagnitude(transform.position - target.transform.position) < sqrDistanse)
+            if (Vector3.SqrMagnitude(transform.position - target.transform.position) <= sqrDistanse)
                 nearestTarget = target.transform;
         }
     }

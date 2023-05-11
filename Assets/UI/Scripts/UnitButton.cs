@@ -12,6 +12,8 @@ public class UnitButton : MonoBehaviour
         if (prefab[index].GetComponent<Unit>().cost > MatterManager.matter)
             return;
         GameObject unit = Instantiate(prefab[index], spawnPos.position, Quaternion.identity);
-        unit.GetComponent<Unit>().OnCreate();
+        unit.GetComponent<Unit>().changeMask = 1 << 10;
+        unit.GetComponent<Unit>().SmovementDirection = Vector2.right;
+        unit.GetComponent<Unit>().OnCreate();  
     }
 }
