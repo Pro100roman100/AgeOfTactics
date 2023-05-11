@@ -77,7 +77,9 @@ private void Update()
 
     public virtual void OnCreate()
     {
-        MatterManager.matter -= cost;
+        tagConnection = GameObject.Find("Player_1_Base");
+        transform.gameObject.tag = tagConnection.tag;
+        MatterManager.massSpending(tagConnection.tag);
 
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
         
@@ -87,8 +89,6 @@ private void Update()
 
         health.maxHealth += UpdatesManager.addHealth;
         health.Heal(UpdatesManager.addHealth);
-        tagConnection = GameObject.Find("Player_1_Base");
-        transform.gameObject.tag = tagConnection.tag;
     }
     public virtual void OnDestroy() { return; }
 

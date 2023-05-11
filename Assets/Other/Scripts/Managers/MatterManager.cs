@@ -9,6 +9,13 @@ public class MatterManager : MonoBehaviour
     public float matterPerSecond = 100;
     [SerializeField] private float startMatter = 100;
 
+    public void massSpending(string tag, float cost)
+    {
+        if (tag == "Player_1")
+            matter -= cost;
+        else
+            matter += cost;
+    }
     private void Awake()
     {
         if (Manager == null)
