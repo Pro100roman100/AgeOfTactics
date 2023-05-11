@@ -79,7 +79,7 @@ private void Update()
     {
         tagConnection = GameObject.Find("Player_1_Base");
         transform.gameObject.tag = tagConnection.tag;
-        MatterManager.massSpending(tagConnection.tag);
+        MatterManager.Manager.massSpending(tagConnection.tag, cost);
 
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
         
