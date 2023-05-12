@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4232305753203829774}
   - component: {fileID: 3124314155199808284}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2209025407688710950}
   - component: {fileID: 3567573835944066039}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6171970094035885951}
   - component: {fileID: 2501752896830528441}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4929792043863063733}
   - component: {fileID: 6120293894037701226}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5892580067735219176}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: shootOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 7438834442896161357}
   - component: {fileID: 3406971638499866891}
   - component: {fileID: 7343723771438165449}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: ArmyMan 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -473,7 +473,7 @@ MonoBehaviour:
   reloadSpeed: 0.85
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   bulletOrigin: {fileID: 5892580067735219176}
   bulletPrefab: {fileID: 3409685641933904201, guid: 65ff452e5bc21044cb27995b767a3210, type: 3}
   bulletSpeed: 5
@@ -482,6 +482,7 @@ MonoBehaviour:
   cost: 100
   movementDirection: {x: 0, y: 0}
   tagConnection: 
+  ammoTag: 
   nearestTarget: {fileID: 0}
   inRange: 0
   isReloaded: 1

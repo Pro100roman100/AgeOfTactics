@@ -22,9 +22,10 @@ abstract public class Unit : MonoBehaviour
     [HideInInspector] public string tagConnection;
     [HideInInspector] public string ammoTag;
     [HideInInspector] public Transform nearestTarget;
-    [HideInInspector] public bool inRange;
+    protected bool inRange;
     [HideInInspector] public bool isReloaded = true;
-    private HealthManager health;     
+    private HealthManager health;   
+    private Coroutine refreshTargetCour;
 
     public LayerMask changeMask
     {
@@ -59,7 +60,7 @@ abstract public class Unit : MonoBehaviour
             movementDirection = value;
         }
     }
-private void Update()
+    private void Update()
     {
         if (nearestTarget == null)
             inRange = false;
@@ -97,19 +98,41 @@ private void Update()
 
     public virtual void OnCreate()
     {
-
-        InvokeRepeating(nameof(RefreshTargets), 0, .5f);
-        
         health = GetComponent<HealthManager>();
         streng += UpdatesManager.addStreng;
         speed += UpdatesManager.addSpeed;
 
         health.maxHealth += UpdatesManager.addHealth;
         health.Heal(UpdatesManager.addHealth);
-    }
-    public virtual void OnDestroy() { return; }
 
-    private void RefreshTargets()
+        refreshTargetCour = StartCoroutine(RefreshTargets());
+    }
+    public virtual void OnDestroy() { 
+        StopCoroutine(refreshTargetCour);
+    }
+
+    protected IEnumerator RefreshTargets() {
+        while(true) {
+            Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
+
+            Debug.Log(targets.Length + tag);
+
+            if (targets.Length != 0 && nearestTarget == null)
+            {
+                float sqrDistanse = Mathf.Infinity;
+
+                foreach (Collider2D target in targets)
+                {
+                    if (Vector3.SqrMagnitude(transform.position - target.transform.position) <= sqrDistanse)
+                        nearestTarget = target.transform;
+                }
+            }
+
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    /*private void RefreshTargets()
     {
         Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
 
@@ -126,7 +149,7 @@ private void Update()
             if (Vector3.SqrMagnitude(transform.position - target.transform.position) <= sqrDistanse)
                 nearestTarget = target.transform;
         }
-    }
+    }*/
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadSpeed);
