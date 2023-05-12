@@ -5,31 +5,34 @@ using UnityEngine;
 public class MatterManager : MonoBehaviour
 {
     public static MatterManager Manager = null;
-    [HideInInspector] public static float matter = 0;
-    public float matterPerSecond = 100;
+    [HideInInspector] public static float player1matter = 0;
+    [HideInInspector] public static float player2matter = 0;
+    public float player1matterPerSecond = 100;
+    public float player2matterPerSecond = 1;
     [SerializeField] private float startMatter = 100;
 
     public void massSpending(string tag, float cost)
     {
         if (tag == "Player_1")
-            matter -= cost;
+            player1matter -= cost;
         else
-            matter += cost;
+            player2matter -= cost;
     }
     private void Awake()
     {
         if (Manager == null)
             Manager = this;
-        matter = startMatter;
+        player1matter = startMatter;
+        player2matter = startMatter;
     }
 
     private void Update()
     {
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))
-            matter += 1000;
+            player1matter += 1000;
 #endif
-        matter += matterPerSecond * Time.deltaTime;
-        if (matter < 0) Debug.LogError("Matter < 0");
+        player1matter += player1matterPerSecond * Time.deltaTime;
+        player2matter += player2matterPerSecond * Time.deltaTime;
     }
 }

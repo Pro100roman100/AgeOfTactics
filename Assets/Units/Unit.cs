@@ -19,17 +19,36 @@ abstract public class Unit : MonoBehaviour
     public float cost = 100f;
 
     [HideInInspector] public Vector2 movementDirection;
-    [HideInInspector] public GameObject tagConnection;
+    [HideInInspector] public string tagConnection;
+    [HideInInspector] public string ammoTag;
     [HideInInspector] public Transform nearestTarget;
     [HideInInspector] public bool inRange;
     [HideInInspector] public bool isReloaded = true;
-    private HealthManager health;
+    private HealthManager health;     
 
     public LayerMask changeMask
     {
         set
         {
             enemyMask = value;
+        }
+    }
+    public string changeammoTag
+    {
+        get
+        {
+            return ammoTag;
+        }
+        set
+        {
+            ammoTag = value;
+        }
+    }
+    public string changetagConnection
+    {
+        set
+        {
+            tagConnection = value;
         }
     }
     public Vector2 SmovementDirection
@@ -54,10 +73,11 @@ private void Update()
         if (!isReloaded || !inRange)
             return;
 
-        //Debug.Log("Shoot");
+        Debug.Log("Shoot " + tagConnection);
         
         GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
-
+        bullet.GetComponent<Ammo>().thisTag = this.gameObject.tag;
+        bullet.GetComponent<Ammo>().enemyTag = tagConnection;
         Vector2 diferense = (nearestTarget.position - transform.position);
 
         bullet.GetComponent<Rigidbody2D>().AddForce(diferense.normalized * bulletSpeed);
@@ -77,9 +97,6 @@ private void Update()
 
     public virtual void OnCreate()
     {
-        tagConnection = GameObject.Find("Player_1_Base");
-        transform.gameObject.tag = tagConnection.tag;
-        MatterManager.Manager.massSpending(tagConnection.tag, cost);
 
         InvokeRepeating(nameof(RefreshTargets), 0, .5f);
         

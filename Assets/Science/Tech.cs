@@ -43,9 +43,9 @@ public abstract class Tech : MonoBehaviour
 
     public void Research()
     {
-        if (CanTech() && MatterManager.matter >= cost)
+        if (CanTech() && MatterManager.player1matter >= cost)
         {
-            MatterManager.matter -= cost;
+            MatterManager.player1matter -= cost;
             OnResearch();
             researched = true;
         }

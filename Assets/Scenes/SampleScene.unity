@@ -1214,8 +1214,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37cfa78ac5d20ac4dba828e3fc6624b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  matterPerSecond: 1
-  startMatter: 500
+  player1matterPerSecond: 10
+  player2matterPerSecond: 10
+  startMatter: 190
 --- !u!114 &290853023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,7 +1266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitprefab:
-  - {fileID: 7418037198588982433, guid: c454c307b84112b4380ded26e620397f, type: 3}
+  - {fileID: 7418037198588982433, guid: 0a6d174d57be38444b3ec014f04004c9, type: 3}
   spawnPos: {fileID: 48743153}
 --- !u!1001 &334633587
 PrefabInstance:

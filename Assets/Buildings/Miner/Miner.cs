@@ -8,11 +8,11 @@ public class Miner : Building
     public override void OnBuild()
     {
         base.OnBuild();
-        MatterManager.Manager.matterPerSecond += matterAdd;
+        MatterManager.Manager.player1matterPerSecond += matterAdd;
     }
     public override void OnUnbuild()
     {
         base.OnUnbuild();
-        MatterManager.Manager.matterPerSecond -= matterAdd;
+        MatterManager.Manager.player1matterPerSecond -= matterAdd;
     }
 }

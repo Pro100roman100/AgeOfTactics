@@ -143,7 +143,7 @@ public class BuildManager : MonoBehaviour
     private void Building()
     {
         buildingObject.transform.position = FitToGrid(mousePosition);
-        if (buildingObject.cost > MatterManager.matter)
+        if (buildingObject.cost > MatterManager.player1matter)
         {
             buildingObject.ChangeColor(buildingObject.cantBuildColor);
             canBuild = false;

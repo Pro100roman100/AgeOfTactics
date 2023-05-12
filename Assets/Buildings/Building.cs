@@ -31,7 +31,7 @@ public abstract class Building : MonoBehaviour
     {
         colider.enabled = true;
         ChangeColor(buildedColor);
-        MatterManager.matter -= cost;
+        MatterManager.player1matter -= cost;
         builded = true;
         tagConnection = GameObject.Find("Player_1_Base");
         transform.gameObject.tag = tagConnection.tag ;
@@ -56,7 +56,7 @@ public abstract class Building : MonoBehaviour
     }
     public virtual void OnUnbuild() {
         if(!builded) return;
-        MatterManager.matter += cost / 2;
+        MatterManager.player1matter += cost / 2;
 
         Vector2[] output = BuildManager.DrawGridSection((Vector3Int)size, transform.position);
 
