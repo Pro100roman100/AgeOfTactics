@@ -62,6 +62,7 @@ abstract public class Unit : MonoBehaviour
     }
     private void Update()
     {
+        StartCoroutine(RefreshTargets());
         if (nearestTarget == null)
             inRange = false;
         else if(Vector3.SqrMagnitude(nearestTarget.position - transform.position) <= range * range)
@@ -104,20 +105,18 @@ abstract public class Unit : MonoBehaviour
 
         health.maxHealth += UpdatesManager.addHealth;
         health.Heal(UpdatesManager.addHealth);
-
-        refreshTargetCour = StartCoroutine(RefreshTargets());
     }
     public virtual void OnDestroy() { 
-        StopCoroutine(refreshTargetCour);
+        StopCoroutine(RefreshTargets());
     }
-
     protected IEnumerator RefreshTargets()
     {
-        while (true)
-        {
+       // while (true)
+        //{
             Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
 
-            Debug.Log(targets.Length + tag);
+
+            Debug.Log(targets.Length + " " + tagConnection);
 
             if (targets.Length != 0 && nearestTarget == null)
             {
@@ -131,7 +130,7 @@ abstract public class Unit : MonoBehaviour
             }
 
             yield return new WaitForSeconds(.1f);
-        }
+        //}
     }
 
     //private void RefreshTargets()
