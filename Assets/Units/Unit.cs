@@ -111,8 +111,10 @@ abstract public class Unit : MonoBehaviour
         StopCoroutine(refreshTargetCour);
     }
 
-    protected IEnumerator RefreshTargets() {
-        while(true) {
+    protected IEnumerator RefreshTargets()
+    {
+        while (true)
+        {
             Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
 
             Debug.Log(targets.Length + tag);
@@ -132,24 +134,24 @@ abstract public class Unit : MonoBehaviour
         }
     }
 
-    /*private void RefreshTargets()
-    {
-        Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
+    //private void RefreshTargets()
+    //{
+    //    Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
 
-        if (targets.Length == 0)
-        {
-            nearestTarget = null;
-            return;
-        }
+    //    if (targets.Length == 0)
+    //    {
+    //        nearestTarget = null;
+    //        return;
+    //    }
 
-        float sqrDistanse = Mathf.Infinity;
+    //    float sqrDistanse = Mathf.Infinity;
 
-        foreach (Collider2D target in targets)
-        {
-            if (Vector3.SqrMagnitude(transform.position - target.transform.position) <= sqrDistanse)
-                nearestTarget = target.transform;
-        }
-    }*/
+    //    foreach (Collider2D target in targets)
+    //    {
+    //        if (Vector3.SqrMagnitude(transform.position - target.transform.position) <= sqrDistanse)
+    //            nearestTarget = target.transform;
+    //    }
+    //}
     IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadSpeed);

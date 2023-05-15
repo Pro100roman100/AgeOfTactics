@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   enemyTag: Player_2
-  thisTag: 
+  thisTag: Default
