@@ -65,7 +65,7 @@ abstract public class Unit : MonoBehaviour
         StartCoroutine(RefreshTargets());
         if (nearestTarget == null)
             inRange = false;
-        else if(Vector3.SqrMagnitude(nearestTarget.position - transform.position) <= range * range)
+        else if(Vector3.SqrMagnitude(nearestTarget.position - transform.position) <= range *range)
             inRange = true;
         else
             inRange = false;
@@ -121,7 +121,7 @@ abstract public class Unit : MonoBehaviour
 
                 foreach (Collider2D target in targets)
                 {
-                    if (Vector3.SqrMagnitude(target.transform.position- transform.position) <= range)
+                    if (Vector3.SqrMagnitude(target.transform.position- transform.position) <= range + target.GetComponent<Transform>().localScale.x)
                         nearestTarget = target.transform;
                 }
             }
