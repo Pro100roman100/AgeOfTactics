@@ -16,7 +16,7 @@ public class UnitButton : MonoBehaviour
         unit.GetComponent<Unit>().SmovementDirection = Vector2.right;
         unit.GetComponent<Unit>().OnCreate();
         unit.layer = 9;
-        unit.GetComponent<Unit>().changetagConnection = GameObject.Find("Player_2_Base").tag;
+        unit.GetComponent<Unit>().changeEnemyConnection = GameObject.Find("Player_2_Base").tag;
         unit.tag = GameObject.Find("Player_1_Base").tag;
         MatterManager.Manager.massSpending(unit.tag, unit.GetComponent<Unit>().cost);
     }

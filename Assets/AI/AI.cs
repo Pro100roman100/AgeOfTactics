@@ -16,7 +16,8 @@ public class AI : MonoBehaviour
         unit.GetComponent<Unit>().SmovementDirection = Vector2.left;
         unit.GetComponent<Unit>().OnCreate();
         unit.layer = 10;
-        unit.GetComponent<Unit>().changetagConnection = GameObject.Find("Player_1_Base").tag;
+        unit.GetComponent<Unit>().changeEnemyConnection = GameObject.Find("Player_1_Base").tag;
+        //unit.GetComponent<Unit>().changeammoTag = GameObject.Find("Player_2_Base").tag;
         unit.tag = GameObject.Find("Player_2_Base").tag;
         MatterManager.Manager.massSpending(unit.tag, unit.GetComponent<Unit>().cost);
     }

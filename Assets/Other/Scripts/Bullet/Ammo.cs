@@ -7,16 +7,17 @@ public class Ammo : MonoBehaviour
     [HideInInspector] public float damage;
     [SerializeField] public string enemyTag;
     [SerializeField] public string thisTag;
-    private void Start()
+    private void Awake()
     {
         this.gameObject.tag = thisTag;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.CompareTag(thisTag))
-            return;
-        if (collision.collider.CompareTag(enemyTag))
-            collision.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
-        Destroy(this.gameObject);
+        Debug.Log("CCollision");
+        if (other.gameObject.CompareTag(enemyTag))
+        {
+            other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -6,7 +6,7 @@ abstract public class Unit : MonoBehaviour
 {
     [Header("Shooting")]
     [SerializeField] private float range = 5f;
-    [SerializeField] private float reloadSpeed = 1f;
+    [SerializeField] private float reloadSpeed = .1f;
     public LayerMask enemyMask;
     [Header("Bullet")]
     [SerializeField] private Transform bulletOrigin;
@@ -19,7 +19,7 @@ abstract public class Unit : MonoBehaviour
     public float cost = 100f;
 
     [HideInInspector] public Vector2 movementDirection;
-    [HideInInspector] public string tagConnection;
+    [HideInInspector] public string enemyTag;
     [HideInInspector] public string ammoTag;
     [HideInInspector] public Transform nearestTarget;
     protected bool inRange;
@@ -34,22 +34,22 @@ abstract public class Unit : MonoBehaviour
             enemyMask = value;
         }
     }
-    public string changeammoTag
+    //public string changeammoTag
+    //{
+    //    get
+    //    {
+    //        return ammoTag;
+    //    }
+    //    set
+    //    {
+    //        ammoTag = value;
+    //    }
+    //}
+    public string changeEnemyConnection
     {
-        get
-        {
-            return ammoTag;
-        }
         set
         {
-            ammoTag = value;
-        }
-    }
-    public string changetagConnection
-    {
-        set
-        {
-            tagConnection = value;
+            enemyTag = value;
         }
     }
     public Vector2 SmovementDirection
@@ -74,12 +74,10 @@ abstract public class Unit : MonoBehaviour
     {
         if (!isReloaded || !inRange)
             return;
-
-        Debug.Log("Shoot " + tagConnection);
         
         GameObject bullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.identity);
         bullet.GetComponent<Ammo>().thisTag = this.gameObject.tag;
-        bullet.GetComponent<Ammo>().enemyTag = tagConnection;
+        bullet.GetComponent<Ammo>().enemyTag = enemyTag;
         Vector2 diferense = (nearestTarget.position - transform.position);
 
         bullet.GetComponent<Rigidbody2D>().AddForce(diferense.normalized * bulletSpeed);
@@ -87,7 +85,6 @@ abstract public class Unit : MonoBehaviour
              (nearestTarget.transform.position - transform.position, transform.TransformDirection(Vector3.up));
         bullet.transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
         bullet.GetComponent<Ammo>().damage = streng;
-
 
         isReloaded = false;
         StartCoroutine(Reload());
@@ -116,7 +113,7 @@ abstract public class Unit : MonoBehaviour
             Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, Mathf.Infinity, enemyMask.value);
 
 
-            Debug.Log(targets.Length + " " + tagConnection);
+            //Debug.Log(targets.Length + " " + tagConnection);
 
             if (targets.Length != 0 && nearestTarget == null)
             {
@@ -124,7 +121,7 @@ abstract public class Unit : MonoBehaviour
 
                 foreach (Collider2D target in targets)
                 {
-                    if (Vector3.SqrMagnitude(transform.position - target.transform.position) <= sqrDistanse)
+                    if (Vector3.SqrMagnitude(target.transform.position- transform.position) <= range)
                         nearestTarget = target.transform;
                 }
             }
