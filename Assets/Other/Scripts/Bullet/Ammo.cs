@@ -11,9 +11,11 @@ public class Ammo : MonoBehaviour
     {
         this.gameObject.tag = thisTag;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("CCollision");
+        if (other.gameObject.CompareTag(thisTag))
+            return;
+        Debug.Log("CCollision" + other.gameObject.tag);
         if (other.gameObject.CompareTag(enemyTag))
         {
             other.gameObject.GetComponent<HealthManager>().TakeDamage(damage);
